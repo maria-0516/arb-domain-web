@@ -28,6 +28,8 @@ import { IconViewer } from './components/Icon';
 import NoPage from './Pages/404';
 import LayoutPage from './Pages/LayoutPage';
 import Domain from './Pages/Domain';
+import About from './Pages/About';
+import Faq from './Pages/Faq';
 
 // import useWallet from './useWallet'
 // import { tips } from './useStore'
@@ -48,9 +50,9 @@ function App() {
 				<Route path='/jobs' element={<Jobs />} />
 				<Route path='/docs' element={<Docs />} /> */}
 				<Route path="" element={<LayoutPage />}>
-					{/* <Route path="faq" element={<Faq />} />
+					<Route path="faq" element={<Faq />} />
 					<Route path="about" element={<About />} />
-					<Route path="favorites" element={<Favorites />} /> */}
+					{/* <Route path="favorites" element={<Favorites />} /> */}
 					<Route path="name/:param" element={<Domain />} />
 					<Route path="name/:param/:action" element={<Domain />} />
 					<Route path="address/:param" element={<Domain />} />

@@ -138,7 +138,7 @@ const Register = ({domain, prices, ownerAddress}: {domain: string, prices: Price
 					</div>
 						) : (
 							<div className="register-page">
-								<img src={logo} alt="logo" className="logo" />
+								<img src={logo} alt="logo" width={512} height={512} className="logo-symbol" />
 								<div className="main-part">
 									<div className="first">
 										<div className="d-row middle" style={{gap: 5}}>

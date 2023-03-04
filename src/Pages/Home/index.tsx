@@ -54,7 +54,7 @@ const Home = () => {
 			<div className='back'>
 				<div className='header'>
 					<div className='container border d-row between middle' style={{height: '7em'}}>
-						<Link to="/"><img src={logo} alt="logo" width={512} height={512} style={{width: 64, height: 64}} /></Link>
+						<Link to="/"><img src={logo} alt="logo" width={512} height={512} className="logo-symbol" /></Link>
 						<div className='d-row center middle' style={{gap: '3em'}}>
 							{connectedWallet.connected && <Link to={`/address/${connectedWallet.address}`}>MY ACCOUNT</Link>}
 							<Link to='/favorites'>FAVORITES</Link>
