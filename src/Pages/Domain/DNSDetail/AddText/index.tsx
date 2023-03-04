@@ -1,9 +1,8 @@
 import React from "react";
 
-import './addtext.scss';
-import gray_polygon from '../../../../assets/arb//img/gray-polygon.svg';
+import gray_polygon from '../../../../assets/arb/img/gray-polygon.svg';
 // import green_polygon from '../../../../assets/arb//img/green-polygon.svg';
-import arrow_img from '../../../../assets/arb//img/arrow.svg';
+import arrow_img from '../../../../assets/arb/img/arrow.svg';
 import Icon from "../../../../components/Icon";
 
 const AddText = () => {

@@ -8,7 +8,6 @@ import './progress.scss';
 import gray_polygon from '../../../assets/arb//img/gray-polygon.svg';
 import green_polygon from '../../../assets/arb//img/green-polygon.svg';
 import bag from '../../../assets/arb/img/bag.svg';
-import logo from '../../../assets/arb/img/logo.svg';
 import useStore, { now, tips } from '../../../useStore';
 import useWallet from '../../../useWallet';
 import { abis, Contracts, getLimitTime } from '../../../lib/ENSLib';
@@ -70,7 +69,6 @@ const RegisterStep = ({domain, stepTime}: RegisterStepProps) => {
 	}, [progressValue])
 	return (
 		<div className='register-progress'>
-			<img src={logo} alt="logo" className="logo-img" />
 			<div className='main-part'>
 				{/* <div className="btn-area">
 					<button className="notify-btn d-row center middle" style={{gap: 5}}>

@@ -11,7 +11,6 @@ import './register.scss';
 import Icon from "../../../components/Icon";
 // import bell from '../../../assets/arb//img/bell.svg';
 import polygon from '../../../assets/arb/img/polygon.svg';
-import logo from '../../../assets/arb/img/logo.svg';
 import Spinner from "../../../components/Spinner";
 import WebCrypto from "../../../lib/WebCrypto";
 import useWallet from "../../../useWallet";
@@ -138,7 +137,6 @@ const Register = ({domain, prices, ownerAddress}: {domain: string, prices: Price
 					</div>
 						) : (
 							<div className="register-page">
-								<img src={logo} alt="logo" width={512} height={512} className="logo-symbol" />
 								<div className="main-part">
 									<div className="first">
 										<div className="d-row middle" style={{gap: 5}}>

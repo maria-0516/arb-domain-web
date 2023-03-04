@@ -30,6 +30,12 @@ import LayoutPage from './Pages/LayoutPage';
 import Domain from './Pages/Domain';
 import About from './Pages/About';
 import Faq from './Pages/Faq';
+import Favorites from './Pages/Favorites';
+import Governance from './Pages/Governance';
+import Community from './Pages/Community';
+import Team from './Pages/Team';
+import Jobs from './Pages/Jobs';
+import Docs from './Pages/Docs';
 
 // import useWallet from './useWallet'
 // import { tips } from './useStore'
@@ -44,15 +50,15 @@ function App() {
 				<Route path='/' element={<Home />} />
 				<Route path='/icons' element={<IconViewer />} />
 				{/* <Route path='/app' element={<AppPage />} /> */}
-				{/* <Route path='/governance' element={<Governance />} />
+				<Route path='/governance' element={<Governance />} />
 				<Route path='/community' element={<Community />} />
 				<Route path='/team' element={<Team />} />
 				<Route path='/jobs' element={<Jobs />} />
-				<Route path='/docs' element={<Docs />} /> */}
+				<Route path='/docs' element={<Docs />} />
 				<Route path="" element={<LayoutPage />}>
 					<Route path="faq" element={<Faq />} />
 					<Route path="about" element={<About />} />
-					{/* <Route path="favorites" element={<Favorites />} /> */}
+					<Route path="favorites" element={<Favorites />} />
 					<Route path="name/:param" element={<Domain />} />
 					<Route path="name/:param/:action" element={<Domain />} />
 					<Route path="address/:param" element={<Domain />} />

@@ -19,24 +19,6 @@ import useStore, {config, dnsProver, now, zeroAddress} from '../../useStore';
 import { getDomainByAddress, getDomainInfo, getLimitTime } from '../../lib/ENSLib';
 import arrow from '../../assets/arb//img/arrow.svg';
 
-import img_register from '../../assets/arb//img/register.svg';
-import img_detail from '../../assets/arb//img/detail.svg';
-import img_subdomain from '../../assets/arb//img/subdomain.svg';
-import img_registrant from '../../assets/arb//img/registrant.svg';
-import img_controller from '../../assets/arb//img/controller.svg';
-
-const images = {
-	'detail': img_detail,
-	'dns-detail': img_detail,
-	'subdomain': img_subdomain,
-	'register': img_register,
-	'connect-register': img_register,
-	'register-step': img_register,
-
-    'registrant': img_registrant,
-    'controller': img_controller,
-}
-
 interface DomainStatus {
 	error: string
 	registered: boolean
@@ -167,7 +149,7 @@ const Domain = () => {
 	return (
 		<div className='name'>
 			{!!domain && (
-				<div className="top-part" style={{backgroundImage: `url(${images[status.currentPage]})`}}>
+				<div className="top-part">
 					<Link to={`/name/${domain}/register`} className={`top-btn ${status.currentPage==='register' ? 'active' : ''}`}>
 						REGISTER
 					</Link>
@@ -184,7 +166,7 @@ const Domain = () => {
 				</div>
 			)}
 			{!!address && (
-				<div className="top-part left" style={{backgroundImage: `url(${images[status.currentPage]})`,backgroundPosition: 'right center'}}>
+				<div className="top-part left">
 					<div className="btn-area">
 						<Link to={`/address/${address}/registrant`} className={`top-btn ${status.currentPage === 'registrant' ? 'active' : ''}`}>
 							REGISTRANT

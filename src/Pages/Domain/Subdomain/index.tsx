@@ -138,7 +138,7 @@ const Subdomain = ({domain}: SubdomainProps) => {
 			{
 				status.subdomains.length === 0 ? (
 					<div className="none-subdomains">
-						<img src={logo} alt="logo" className="logo-img" />
+						<img src={logo} alt="logo" width={512} height={512} className="logo-img" />
 						<div className="sub-main d-column center middle" style={{gap: 20}}>
 							<div className="d-row middle" style={{gap: 10}}>
 								<p className="name-text">{domain}</p>

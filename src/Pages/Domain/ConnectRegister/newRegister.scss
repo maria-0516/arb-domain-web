@@ -1,17 +1,4 @@
 .new-register {
-	position: relative;
-	.logo-img {
-		z-index: 1000;
-		position: absolute;
-		top: 15vh;
-		right: -50px;
-		@media (max-width: 1400px) {
-			right: -20px;
-		}
-		@media (max-width: 576px) {
-			display: none;
-		}
-	}
 	.main-part {
 		min-height: calc(73vh - 63px);
 	}

@@ -12,7 +12,6 @@ const ConnectRegister = ({domain}: {domain?: string}) => {
 	const {loading, favorites} = useStore()
 	return (
 		<div className="new-register">
-			<img src={logo} alt="logo" className="logo-img" />
 			<div className="main-part d-column center middle" style={{gap: 10}}>
 				{!!domain && (
 					<div className="d-row middle" style={{gap: 5}}>
