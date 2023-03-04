@@ -1,0 +1,502 @@
+[
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "where",
+				"type": "string"
+			},
+			{
+				"internalType": "address",
+				"name": "sender",
+				"type": "address"
+			}
+		],
+		"name": "MustbeController",
+		"type": "error"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "where",
+				"type": "string"
+			},
+			{
+				"internalType": "address",
+				"name": "sender",
+				"type": "address"
+			}
+		],
+		"name": "MustbeOwner",
+		"type": "error"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "contract INameWrapper",
+				"name": "_nameWrapper",
+				"type": "address"
+			},
+			{
+				"internalType": "contract IETHRegistrarController",
+				"name": "_ethController",
+				"type": "address"
+			},
+			{
+				"internalType": "contract IDummyOracle",
+				"name": "_priceOracle",
+				"type": "address"
+			},
+			{
+				"internalType": "contract Resolver",
+				"name": "_resolver",
+				"type": "address"
+			}
+		],
+		"name": "addController",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_account",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "_label",
+				"type": "string"
+			}
+		],
+		"name": "addDomain",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_account",
+				"type": "address"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "_parentNode",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "string",
+				"name": "_label",
+				"type": "string"
+			}
+		],
+		"name": "addSubDomain",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "bytes32",
+				"name": "_nodehash",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "string",
+				"name": "_key",
+				"type": "string"
+			}
+		],
+		"name": "addTextKey",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_account",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_page",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_pageCount",
+				"type": "uint256"
+			}
+		],
+		"name": "asController",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "_currentPage",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_totalPage",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_count",
+				"type": "uint256"
+			},
+			{
+				"components": [
+					{
+						"internalType": "string",
+						"name": "label",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "expires",
+						"type": "uint256"
+					}
+				],
+				"internalType": "struct DeamNameWrapper.DomainInfo[]",
+				"name": "_infos",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_account",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_page",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_pageCount",
+				"type": "uint256"
+			}
+		],
+		"name": "asRegistrant",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "_currentPage",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_totalPage",
+				"type": "uint256"
+			},
+			{
+				"components": [
+					{
+						"internalType": "string",
+						"name": "label",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "expires",
+						"type": "uint256"
+					}
+				],
+				"internalType": "struct DeamNameWrapper.DomainInfo[]",
+				"name": "_infos",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_node",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "_owner",
+				"type": "address"
+			}
+		],
+		"name": "changeOwner",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "bytes32",
+				"name": "_parentNode",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "string",
+				"name": "_label",
+				"type": "string"
+			}
+		],
+		"name": "deleteSubDomain",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "ethController",
+		"outputs": [
+			{
+				"internalType": "contract IETHRegistrarController",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "_label",
+				"type": "string"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "_nodehash",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "bool",
+				"name": "withPrice",
+				"type": "bool"
+			}
+		],
+		"name": "getDomainInfo",
+		"outputs": [
+			{
+				"internalType": "address[]",
+				"name": "_accounts",
+				"type": "address[]"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_expire",
+				"type": "uint256"
+			},
+			{
+				"internalType": "bytes",
+				"name": "_contentHash",
+				"type": "bytes"
+			},
+			{
+				"internalType": "string[][]",
+				"name": "_texts",
+				"type": "string[][]"
+			},
+			{
+				"internalType": "uint256[]",
+				"name": "_prices",
+				"type": "uint256[]"
+			},
+			{
+				"internalType": "string[]",
+				"name": "_subs",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string[]",
+				"name": "_names",
+				"type": "string[]"
+			}
+		],
+		"name": "getExpires",
+		"outputs": [
+			{
+				"internalType": "uint256[]",
+				"name": "_expires",
+				"type": "uint256[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string[]",
+				"name": "_names",
+				"type": "string[]"
+			}
+		],
+		"name": "getExtendedPrices",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "_basePrice",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_premiumPrice",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_etherPrice",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "bytes32",
+				"name": "_commitmentHash",
+				"type": "bytes32"
+			}
+		],
+		"name": "getLimitTime",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "_timestamp",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_min",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_max",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "nameWrapper",
+		"outputs": [
+			{
+				"internalType": "contract INameWrapper",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "owner",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "priceOracle",
+		"outputs": [
+			{
+				"internalType": "contract IDummyOracle",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string[]",
+				"name": "_names",
+				"type": "string[]"
+			},
+			{
+				"internalType": "uint256",
+				"name": "_duration",
+				"type": "uint256"
+			}
+		],
+		"name": "renew",
+		"outputs": [],
+		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "resolver",
+		"outputs": [
+			{
+				"internalType": "contract Resolver",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "_parentNode",
+				"type": "uint256"
+			}
+		],
+		"name": "subdomains",
+		"outputs": [
+			{
+				"internalType": "string[]",
+				"name": "",
+				"type": "string[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+]

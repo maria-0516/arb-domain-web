@@ -1,0 +1,18 @@
+.name {
+	.top-part {
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-end;
+		background-position: left center;
+		background-repeat: no-repeat;
+		border-bottom: 1px solid rgba(202, 198, 255, 1);
+		@media (max-width: 576px) {
+			justify-content: center;
+		}
+
+		&.left {
+			// background-image: url();
+			justify-content: space-between;
+		}
+	}
+}

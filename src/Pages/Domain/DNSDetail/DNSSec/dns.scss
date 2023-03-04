@@ -1,0 +1,26 @@
+.dns-detail {
+	.third-part {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: space-between;
+		padding: 20px;
+		@media (max-width: 576px) {
+			flex-wrap: wrap;
+		}
+		.purple-text {
+
+
+			color: #4F24C5;
+		}
+		.pink-text {
+
+			color: #F528EC;
+		}
+		.exc-icon {
+			width: 12px;
+			height: 12px;
+			color: #F528EC;
+		}
+	}
+}

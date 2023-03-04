@@ -1,0 +1,46 @@
+.dns-detail {
+	.second-part {
+		border: 0 !important;
+	}
+	.third-part {
+		width: 100%;
+		height: auto;
+		background: linear-gradient(0deg, #FFFFFF 0%, #F2F4FF 100%);
+		padding: 20px;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: flex-start;
+		gap: 20px;
+		@media (max-width: 576px) {
+			flex-wrap: wrap;
+		}
+		.owner-btn {
+			background: rgb(199, 211, 227);
+			color: white;
+			border-radius: 5px;
+			border: 0;
+			padding: 2px 5px;
+		}
+		.owner-text {
+			color: black;
+			margin: 0;
+			font-size: 1.3em;
+		}
+		.address-text {
+			color: #5405d2;
+			font-size: 1.2em;
+			line-break: anywhere;
+		}
+	}
+	.forth-part {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: flex-end;
+		padding: 20px;
+		.purple-text {
+			color: #4F24C5;
+		}
+	}
+}

@@ -1,0 +1,152 @@
+.subdomain-page {
+	.none-subdomains {
+		min-height: 73vh;
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		position: relative;
+	}
+	.logo-img {
+		z-index: 1000;
+		position: absolute;
+		top: 15vh;
+		right: -50px;
+		@media (max-width: 1400px) {
+			right: -20px;
+		}
+		@media (max-width: 576px) {
+			display: none;
+		}
+	}
+	.sub-main {
+		width: 100%;
+		min-height: 55vh;
+	}
+	.sub-footer {
+		width: 100%;
+		height: 100px;
+		background: linear-gradient(0deg, #FFFFFF 0%, #F2F4FF 100%);
+		border-radius: 0px 0px 3px 3px;
+		padding: 10px;
+	}
+	.name-text{
+		font-weight: 300;
+		font-size: 26px;
+		line-height: 34px;
+		text-align: center;
+		color: #2B1953;
+		margin: 0;
+	}
+	.add {
+		padding: 10px 20px;
+		font-weight: 500;
+		font-size: 12px;
+		line-height: 16px;
+		text-align: center;
+		// text-transform: uppercase;
+		color: #F528EC;
+		background: #F2F3FF;
+		border-radius: 3px;
+		&:hover {
+			background: #e6e6f0;
+		}
+		&:active {
+			background: #cecfd8;
+		}
+	}
+	.disc-text {
+		font-weight: 400;
+		font-size: 18px;
+		line-height: 23px;
+		text-align: center;
+		// text-transform: uppercase;
+		color: #570DAF;
+		margin: 0;
+	}
+	.address-text {
+		font-weight: 500;
+		font-size: 11px;
+		line-height: 14px;
+		text-align: center;
+		color: #5727DA;
+		margin: 0;
+	}
+	
+	.save-btn {
+		font-weight: 600;
+		font-size: 12px;
+		line-height: 16px;
+		text-align: center;
+		// text-transform: uppercase;
+		color: #FFFFFF;
+		background: #7E43DE;
+		border: 1px solid #7E43DE;
+		border-radius: 3px;
+		padding: 10px;
+		width: 145px;
+		&:hover {
+			background: #905be6;
+		}
+		&:active {
+			background: #5405d2;
+		}
+	}
+	.cancel-btn {
+		font-weight: 500;
+		font-size: 12px;
+		line-height: 16px;
+		text-align: center;
+		// text-transform: uppercase;
+		color: #4F24C5;
+		background-color: transparent;
+		border: 1px solid #4F24C5;
+		border-radius: 3px;
+		padding: 10px;
+		width: 145px;
+		&:hover {
+			background-color: rgba(150, 150, 150, 0.15);
+		}
+		&:active {
+			background-color: rgba(150, 150, 150, 0.3);
+		}
+	}
+	.subdomain-region {
+		width: 80%;
+		margin: 2em 10%;
+		background: #efeff7;
+		padding: 2em;
+		height: 50vh;
+		overflow-y: auto;
+		& > div {
+			padding: 1em;
+			border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+		}
+		@media (max-width: 768px) {
+			width: 100%;
+			margin: 1em 0;
+			padding: 0;
+			& > div {
+				padding: 0.8em;
+			}
+		}
+	}
+	.registered {
+		padding: 3em;
+		@media (max-width: 768px) {
+			padding: 2em 0;
+		}
+		.top {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+		}
+	}
+	i {
+		&:hover {
+			color: #b089f0 !important;
+		}
+		&:active {
+			color: #30017c !important;
+		}
+	}
+}

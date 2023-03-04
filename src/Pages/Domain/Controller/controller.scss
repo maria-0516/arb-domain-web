@@ -1,0 +1,64 @@
+.controller {
+	.pink-text {
+		font-weight: 700;
+		font-size: 12px;
+		line-height: 16px;
+		text-align: center;
+		color: #F528EC;
+		margin: 20px 0;
+	}
+	.main-part {
+		padding: 20px 30%;
+		width: 100%;
+		height: auto;
+		background: #F6F5FF;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 10px;
+		@media (max-width: 576px) {
+			padding: 20px   ;
+		}
+	}
+	.table-title {
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 18px;
+		text-align: center;
+		color: #8179E1;
+		margin: 0;
+		text-align: left;
+	}
+	.table-text {    
+		font-weight: 400;
+		font-size: 20px;
+		line-height: 26px;
+		color: #2B1953;
+		margin: 0;
+		text-align: left;
+	}
+	.item {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		padding: 20px;
+		&.border {
+			border-bottom: 1px solid #CAC6FF;
+		}
+		.one {
+			width: calc(100% - 50px);
+		}
+		.two {
+			width: 60px;
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+		}
+	}
+	.select {
+		width: 100%;
+		z-index: 1000;
+	}
+}

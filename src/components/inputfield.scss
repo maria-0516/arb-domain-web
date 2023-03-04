@@ -1,0 +1,36 @@
+.inputfield {
+    position: relative;
+    border: 1px solid #DFDCFC;
+    input {
+        border: none !important;
+        width: 100%;
+        padding-right: 2em;
+    }
+
+    button {
+        position: absolute;
+        border-radius: 0;
+        background-color: transparent;
+        right: 0;
+        width: 2em;
+        height: 50%;
+        border: 0;
+        border-left: 1px solid #DFDCFC;
+
+        &:hover {
+            background-color: #DFDCFC;
+        }
+        &:active {
+            background-color: rgb(200, 200, 200);
+        }
+        &.up {
+            top: 0;
+            border-right: 0;
+            border-bottom: 1px solid #DFDCFC;
+        }
+        &.down {
+            border-right: 0;
+            bottom: 0;
+        }
+    }
+}

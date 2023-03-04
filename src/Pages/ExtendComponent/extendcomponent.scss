@@ -1,0 +1,91 @@
+.extend {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 20px 30%;
+	gap: 20px;
+	@media (max-width: 768px) {
+		padding: 20px;
+	}
+	.save-btn {
+		font-weight: 600;
+		font-size: 12px;
+		line-height: 16px;
+		text-align: center;
+		// text-transform: uppercase;
+		color: #FFFFFF;
+		background: #7E43DE;
+		border: 1px solid #7E43DE;
+		border-radius: 3px;
+		padding: 10px;
+		width: 145px;
+		&:hover {
+			background: #905be6;
+		}
+		&:active {
+			background: #5405d2;
+		}
+	}
+	.cancel-btn {
+		font-weight: 500;
+		font-size: 12px;
+		line-height: 16px;
+		text-align: center;
+		// text-transform: uppercase;
+		color: #4F24C5;
+		background-color: transparent;
+		border: 1px solid #4F24C5;
+		border-radius: 3px;
+		padding: 10px;
+		width: 145px;
+		&:hover {
+			background-color: rgba(150, 150, 150, 0.15);
+		}
+		&:active {
+			background-color: rgba(150, 150, 150, 0.3);
+		}
+	}
+	input {
+		width: 10em;
+		height: auto;
+		padding: 10px;
+		font-size: 18px;
+		line-height: 23px;
+		text-align: center;
+		color: #2B1953;
+		border: 1px solid #DFDCFC;
+		border-radius: 3px;
+		@media (max-width: 768px) {
+			width: 8em;
+		}
+	}
+	.line {
+		width: 50px;
+		height: 1px;
+		background: #F528EC;
+		position: relative;
+		@media (max-width: 768px) {
+			display: none;
+		}
+		.center-circle {
+			width: 10px;
+			height: 10px;
+			border-radius: 50%;
+			border: 1px solid #F528EC;
+			background-color: transparent;
+			position: absolute;
+			left: 20px;
+			top: -5px;
+			background-color: white;
+		}
+	}
+	.light-text {
+		font-weight: 400;
+		font-size: 12px;
+		line-height: 18px;
+		text-align: center;
+		color: #A193BF;
+		margin: 0;
+	}
+}

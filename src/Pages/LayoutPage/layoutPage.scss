@@ -1,0 +1,116 @@
+.layout {
+	.back {
+		min-height: 100vh;
+		height: auto;
+		margin: 0;
+		padding: 0;
+		background: linear-gradient(90deg,#513eff 0%,#02d0f5 100%);
+		background-size:100% auto;
+		padding-bottom: 20px;
+		@media (max-width: 576px) {
+			padding-top: 100px;
+		}
+	}
+	.header {
+		height: auto;
+		width: 100%;
+		border: 0;
+		padding: 10px;
+		min-height: 90px;
+		.border {
+			padding: 10px;
+			border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+		}
+		a {
+			color: white;
+			// text-transform: uppercase;
+			font-size: 12px;
+			&.active {
+				color: #96E427;
+			}
+			
+			&:hover {
+				color: #b8f068;
+			}
+			&:active {
+				color: #95ff00;
+			}
+		}
+	}
+	.hamburger {
+		display: none;
+	}
+	@media (max-width: 576px) {
+		.header {
+			display: none;
+		}
+		.hamburger {
+			display: block;
+		}
+	}
+	.sch-btn {
+		padding: 13px 50px;
+		background: linear-gradient(222.61deg, #E7FFC0 9.61%, #AEEF54 108.76%);
+		box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+		border-radius: 3px;
+		font-size: 18px;
+		line-height: 23px;
+		text-align: center;
+		// text-transform: uppercase;
+		color: #530E98;
+		&:hover {
+			background: linear-gradient(222.61deg, #cff496 9.61%, #9af718 108.76%);
+		}
+
+		&:active {
+			background: linear-gradient(222.61deg, #bef468 9.61%, #8ff401 108.76%);
+		}
+	}
+	.search-region {
+		width: 100%;
+		background: linear-gradient(270deg, #5D1EE0 0%, #8649FF 18.86%, #3FD1FF 84.88%, #5BE1FF 100.6%);
+		border-radius: 4px;
+		padding: 15px;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		align-items: center;
+		.input-size {
+			width: calc(100% - 190px);
+		}
+		@media (max-width: 576px) {
+			justify-content: center;
+			gap: 10px;
+			.input-size {
+				width: 100%;
+			}
+		}
+	}
+	.main-region {
+		z-index: 0;
+		border: 0;
+		border-top: 3px solid #F528EC;
+		border-radius: 3px;
+		background: linear-gradient(0deg, #FFFFFF 78.71%, #F2F4FF 100%);
+		margin-top: 20px;
+		min-height: 73vh;
+	}
+	.footer {
+		width: 100%;
+		font-size: 12px;
+		line-height: 180%;
+		text-align: center;
+		color: #D0D4EA;
+		padding-top: 20px;
+	}
+	.mobile-region {
+		margin-bottom: 20px;
+		display: none;
+	}
+
+	@media (max-width: 576px) {
+		.mobile-region {
+			display: block;
+		}
+	}
+}

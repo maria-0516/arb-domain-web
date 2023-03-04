@@ -1,0 +1,43 @@
+.new-register {
+	position: relative;
+	.logo-img {
+		z-index: 1000;
+		position: absolute;
+		top: 15vh;
+		right: -50px;
+		@media (max-width: 1400px) {
+			right: -20px;
+		}
+		@media (max-width: 576px) {
+			display: none;
+		}
+	}
+	.main-part {
+		min-height: calc(73vh - 63px);
+	}
+	.name-text{
+		font-weight: 300;
+		font-size: 26px;
+		line-height: 34px;
+		text-align: center;
+		color: #2B1953;
+		margin: 0;
+	}
+	.domain-text {
+		font-weight: 400;
+		font-size: 1.6em;
+		line-height: 26px;
+		text-align: center;
+		// text-transform: uppercase;
+		color: #570DAF;
+		margin: 0;
+	}
+	.small-text {
+		font-weight: 500;
+		font-size: 1.2em;
+		line-height: 14px;
+		text-align: center;
+		color: #5727DA;
+		margin: 0;
+	}
+}

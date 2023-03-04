@@ -1,0 +1,31 @@
+.paginator {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 1em 0;
+	ul {
+		display: flex;
+		gap: 0.2em;
+		list-style: none;
+	}
+
+	a {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 2em;
+		height: 2em;
+
+		&:hover {
+			background-color: #eee;
+		}
+		&:active {
+			background-color: #aaa;
+		}
+		&.selected {
+			background-color: #888;
+			color: white;
+			font-weight: 700;
+		}
+	}
+}
