@@ -3,7 +3,7 @@ import { Link, Outlet, useNavigate } from "react-router-dom";
 
 import './layoutPage.scss';
 import SearchInput from "../../components/SearchInput";
-import logo from '../../assets/arb/img/logo.svg';
+import logo from '../../assets/neon/img/logo.svg';
 import Loading from "../../components/Loading";
 import useStore, { config, tips } from "../../useStore";
 import { validAddress, validDomainName } from "../../lib/utils";
@@ -31,12 +31,12 @@ const LayoutPage = (LayoutProps: any) => {
 				if (validDomainName(domain)) {
 					const x = domain.split('.')
 					if (x[x.length-1]===config.rootDomain) {
-						if (x.length===2 && x[0].length < 3) {
-							tips("Domain name should be 3 characters at least.")
-						} else {
+						// if (x.length===2 && x[0].length < 3) {
+						// 	tips("Domain name should be 3 characters at least.")
+						// } else {
 							navigate(`/name/${domain}`);
 							if (domain !== label) setQuery(domain)
-						}
+						// }
 					} else {
 						tips(`Currently ${config.title} supports [${config.rootDomain}] only.`)
 					}
@@ -53,7 +53,7 @@ const LayoutPage = (LayoutProps: any) => {
 			<div className="back">
 				<div className='header'>
 					<div className='container d-row between middle' style={{height: '7em'}}>
-						<Link to="/"><img src={logo} alt="logo" width={512} height={512} className="logo-symbol" /></Link>
+						<Link to="/"><img src={logo} alt="logo" style={{width: '64px', height:  '64px'}} /></Link>
 						<div className='d-row center middle' style={{gap: '3em'}}>
 							{connectedWallet.connected && <Link to={`/address/${connectedWallet.address}/controller`}>MY ACCOUNT</Link>}
 							<Link to='/favorites'>FAVORITES</Link>
@@ -64,7 +64,7 @@ const LayoutPage = (LayoutProps: any) => {
 					</div>
 				</div>
 				<div className="hamburger">
-					<Link to="/"><img src={logo} alt="logo" width={512} height={512} className="logo-symbol" /></Link>
+					<Link to="/"><img src={logo} alt="logo" className='logo' style={{width: '64px', height:  '64px'}} /></Link>
 					<input style={{display: 'none'}} type="checkbox" id="__hamburger" />
 					<label htmlFor="__hamburger">
 						<span></span>
@@ -91,7 +91,7 @@ const LayoutPage = (LayoutProps: any) => {
 					</div>
 				</div>
 				<div className='footer d-row center middle'>
-					@2023 ARB Domains - powered by ARB
+					@2022 NeonDomains - powered by NeonLink
 				</div>
 			</div>
 			{loading && <Loading />}

@@ -4,8 +4,8 @@ import Icon from '../../components/Icon';
 import InputField from '../../components/InputField';
 import Spinner from '../../components/Spinner';
 import { getExtendedPrices } from '../../lib/ENSLib';
-import useStore, { config, tips, NF } from '../../useStore';
-import ExtendConfirm from './ExtendConfirm';
+import useStore, { config, tips, NF, getExpectedDomainPrice } from '../../useStore';
+import CoinSelect from '../../components/CoinSelect';
 import { Contracts, abis } from '../../lib/ENSLib';
 
 import './extendcomponent.scss';
@@ -19,11 +19,11 @@ interface ExtendProps {
 }
 
 interface ExtendStatus {
-	priceSum: number
+	price: number
 	loadingPrice: boolean
-	basePrice: number
-	premiumPrice: number
-	etherPrice: number
+	// basePrice: number
+	// premiumPrice: number
+	// etherPrice: number
 	year: number
 	showConfirm: boolean
 }
@@ -32,11 +32,11 @@ const ExtendComponent = ({onClose, domains, onChange}: ExtendProps) => {
 	const {update} = useStore()
 	const wallet = useWallet();
 	const [status, setStatus] = React.useState<ExtendStatus>({
-		priceSum: 0,
+		price: 0,
 		loadingPrice: false,
-		basePrice: 0,
-		premiumPrice: 0,
-		etherPrice: 0,
+		// basePrice: 0,
+		// premiumPrice: 0,
+		// etherPrice: 0,
 		year: 1,
 		showConfirm: false
 	});
@@ -44,19 +44,24 @@ const ExtendComponent = ({onClose, domains, onChange}: ExtendProps) => {
 	const getPrices = async (_year: number) => {
 		try {
 			setStatus({...status, loadingPrice: true})
-			const {_basePrice, _premiumPrice, _etherPrice} = await getExtendedPrices(domains);
-			console.log("_basePrice: ",_basePrice)
-			setStatus({...status, basePrice: _basePrice, premiumPrice: _premiumPrice, etherPrice: _etherPrice, priceSum: (_basePrice * _year + _premiumPrice), loadingPrice: false});
+			let price = 0
+			for (let i of domains) {
+				price += getExpectedDomainPrice(i, _year)
+			}
+			// const {_basePrice, _premiumPrice, _etherPrice} = await getExtendedPrices(domains);
+			// console.log("_basePrice: ",_basePrice)
+			setStatus({...status, price, loadingPrice: false});
 		} catch (error) {
 			console.log(error);
 		}
 	}
 
 	const onYear = (_year: number) => {
-		setStatus({...status, loadingPrice: true})
-		console.log(_year)
-		setStatus({...status, priceSum: (status.basePrice + status.premiumPrice) * _year, loadingPrice: false, year: _year})
-		console.log(status.priceSum)
+		getPrices(_year)
+		// setStatus({...status, loadingPrice: true})
+		// console.log(_year)
+		// setStatus({...status, priceSum: (status.basePrice + status.premiumPrice) * _year, loadingPrice: false, year: _year})
+		// console.log(status.priceSum)
 	}
 
 	const onComfirm = async () => {
@@ -65,7 +70,7 @@ const ExtendComponent = ({onClose, domains, onChange}: ExtendProps) => {
 			if (wallet.library) {
 				const signer = wallet.library.getSigner();
 				const deamNameWrapper = new ethers.Contract(Contracts.deamNameWrapper, abis.deamNameWrapper, signer);
-				const value = ethers.utils.parseEther(String(status.priceSum * 1.01));
+				const value = ethers.utils.parseEther(String(status.price * 1.01));
 				const tx = await deamNameWrapper.renew(domains, status.year * 86400 * 366, {value});
 				await tx.wait();
 				setStatus({...status, showConfirm: false})
@@ -98,16 +103,16 @@ const ExtendComponent = ({onClose, domains, onChange}: ExtendProps) => {
 						<div className="center-circle"></div>
 					</div>
 					<div className="d-column middle center relative">
-						<input type="text" value={`${NF(status.priceSum, 2)} ${config.symbol}`} readOnly/>
+						<input type="text" value={`${NF(status.price, 2)} .ARB`} readOnly/>
 						{status.loadingPrice && <Spinner />}
-						<p className="light-text">Registration price to pay</p>
+						<p className="light-text">Extend price to pay</p>
 					</div>
 				</div>
 				<div className="d-row middle" style={{gap: 20}}>
 					<div className="line"></div>
 					<div className="d-row center middle" style={{gap: 10}}>
 						<Icon icon="Info" className="info-icon" />
-						<p className="pink-text">Increase registration period to avoid paying gas every year</p>
+						<p className="pink-text text-center" style={{lineBreak: 'auto'}}>Increase extend period to avoid paying gas every year</p>
 					</div>
 					<div className="line"></div>
 				</div>
@@ -118,7 +123,7 @@ const ExtendComponent = ({onClose, domains, onChange}: ExtendProps) => {
 			</div>
 			{
 				status.showConfirm && (
-					<ExtendConfirm onConfirm={onComfirm} onClose={()=>setStatus({...status, showConfirm: false})} priceSum={status.priceSum} data={domains} year={status.year} />
+					<CoinSelect isExtend onNext={onComfirm} onClose={()=>setStatus({...status, showConfirm: false})} priceSum={status.price} data={domains} year={status.year} />
 				)
 			}
 		</div>

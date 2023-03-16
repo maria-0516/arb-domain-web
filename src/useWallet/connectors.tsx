@@ -46,7 +46,7 @@ export const walletconnect = async () => {
 	try {
 		const mod = await import('@web3-react/walletconnect-connector')
 		return new mod.WalletConnectConnector({
-			rpc: {[config.chainId]: config.rpc[0]},
+			rpc: {[config.chainId]: config.rpc},
 			chainId: 1,
 			bridge: 'https://bridge.walletconnect.org',
 			qrcode: true
@@ -61,7 +61,7 @@ export const walletlink = async () => {
 	try {
 		const mod = await import('@web3-react/walletlink-connector')
 		return new mod.WalletLinkConnector({
-			url: config.rpc[0],
+			url: config.rpc,
 			appName: config.appTitle,
 			supportedChainIds: [config.chainId]
 		})
@@ -130,7 +130,7 @@ export const torus = async () => {
 export const mewConnect = async () => {
 	try {
 		const mod = await import('./mewconnect-connector')
-		return new mod.MewConnectConnector({  url: config.rpc[0], chainId: config.chainId })
+		return new mod.MewConnectConnector({  url: config.rpc, chainId: config.chainId })
 	} catch (error) {
 		console.log("import mewconnect-connector", error)
 	}

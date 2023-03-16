@@ -14,10 +14,28 @@ import DNSDetail from './DNSDetail';
 import Registrant from './Registrant';
 import Controller from './Controller';
 
-import { isArbDomain, isSubdomain, validAddress, validDomainName } from '../../lib/utils';
+import { isNeonDomain, isSubdomain, validAddress, validDomainName } from '../../lib/utils';
 import useStore, {config, dnsProver, now, zeroAddress} from '../../useStore';
 import { getDomainByAddress, getDomainInfo, getLimitTime } from '../../lib/ENSLib';
-import arrow from '../../assets/arb//img/arrow.svg';
+import arrow from '../../assets/neon/img/arrow.svg';
+
+import img_register from '../../assets/neon/img/register.svg';
+import img_detail from '../../assets/neon/img/detail.svg';
+import img_subdomain from '../../assets/neon/img/subdomain.svg';
+import img_registrant from '../../assets/neon/img/registrant.svg';
+import img_controller from '../../assets/neon/img/controller.svg';
+
+const images = {
+	'detail': img_detail,
+	'dns-detail': img_detail,
+	'subdomain': img_subdomain,
+	'register': img_register,
+	'connect-register': img_register,
+	'register-step': img_register,
+
+    'registrant': img_registrant,
+    'controller': img_controller,
+}
 
 interface DomainStatus {
 	error: string
@@ -52,7 +70,7 @@ const Domain = () => {
 	const checkDomain = async (name: string) => {
 		update({loading: true});
 		try {
-			if (!isArbDomain(name)) {
+			if (!isNeonDomain(name)) {
 				const result = await dnsProver.queryWithProof('TXT', name)
 				console.log(result);
 				return;
@@ -127,7 +145,7 @@ const Domain = () => {
 				setAddress(param)
 				setDomain('')
 			} else if (validDomainName(param)) {
-				// if (!isArbDomain(param || '')) return;
+				// if (!isNeonDomain(param || '')) return;
 				setDomain(param)
 				setAddress('')
 			}
@@ -149,7 +167,7 @@ const Domain = () => {
 	return (
 		<div className='name'>
 			{!!domain && (
-				<div className="top-part">
+				<div className="top-part" style={{backgroundImage: `url(${images[status.currentPage]})`}}>
 					<Link to={`/name/${domain}/register`} className={`top-btn ${status.currentPage==='register' ? 'active' : ''}`}>
 						REGISTER
 					</Link>
@@ -166,7 +184,7 @@ const Domain = () => {
 				</div>
 			)}
 			{!!address && (
-				<div className="top-part left">
+				<div className="top-part left" style={{backgroundImage: `url(${images[status.currentPage]})`,backgroundPosition: 'right center'}}>
 					<div className="btn-area">
 						<Link to={`/address/${address}/registrant`} className={`top-btn ${status.currentPage === 'registrant' ? 'active' : ''}`}>
 							REGISTRANT
@@ -177,7 +195,7 @@ const Domain = () => {
 					</div>
 					<div className="d-row center middle" style={{lineBreak: 'anywhere'}}>{address}</div>
 					<div className="d-row middle" style={{gap: 5}}>
-						<Link to={`${config.scanUrl}/address/${address}`} target="_blank" rel="noreferrer" className="purple-text">View on ARB scan</Link>
+						<Link to={`${config.scanUrl}/address/${address}`} target="_blank" rel="noreferrer" className="purple-text">View on Neonscan</Link>
 						<img src={arrow} alt="arrow" style={{marginRight: 15}} />
 					</div>
 				</div>

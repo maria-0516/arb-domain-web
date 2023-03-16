@@ -30,6 +30,26 @@
 				"internalType": "contract INameWrapper",
 				"name": "_nameWrapper",
 				"type": "address"
+			},
+			{
+				"internalType": "contract IDeamNameWrapper",
+				"name": "_deamName",
+				"type": "address"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "_rootdomainhash",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "string",
+				"name": "_rootDomain",
+				"type": "string"
+			},
+			{
+				"internalType": "address",
+				"name": "_acceptToken",
+				"type": "address"
 			}
 		],
 		"stateMutability": "nonpayable",
@@ -69,7 +89,13 @@
 		"type": "error"
 	},
 	{
-		"inputs": [],
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
 		"name": "InsufficientValue",
 		"type": "error"
 	},
@@ -228,6 +254,19 @@
 		"type": "function"
 	},
 	{
+		"inputs": [],
+		"name": "acceptToken",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [
 			{
 				"internalType": "string",
@@ -279,6 +318,19 @@
 		"type": "function"
 	},
 	{
+		"inputs": [],
+		"name": "deamName",
+		"outputs": [
+			{
+				"internalType": "contract IDeamNameWrapper",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
 		"inputs": [
 			{
 				"internalType": "bytes32",
@@ -294,7 +346,55 @@
 				"type": "bytes32"
 			}
 		],
-		"stateMutability": "pure",
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "duration",
+				"type": "uint256"
+			}
+		],
+		"name": "getPrice",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "price",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "duration",
+				"type": "uint256"
+			}
+		],
+		"name": "getPriceAsUSD",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "price",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
 		"type": "function"
 	},
 	{
@@ -505,6 +605,34 @@
 				"type": "string"
 			},
 			{
+				"internalType": "address",
+				"name": "owner",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "duration",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "resolver",
+				"type": "address"
+			}
+		],
+		"name": "registerByDeam",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			},
+			{
 				"internalType": "uint256",
 				"name": "duration",
 				"type": "uint256"
@@ -513,6 +641,24 @@
 		"name": "renew",
 		"outputs": [],
 		"stateMutability": "payable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "duration",
+				"type": "uint256"
+			}
+		],
+		"name": "renewByDeam",
+		"outputs": [],
+		"stateMutability": "nonpayable",
 		"type": "function"
 	},
 	{
@@ -564,6 +710,42 @@
 			}
 		],
 		"name": "rentPrice",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "base",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "premium",
+						"type": "uint256"
+					}
+				],
+				"internalType": "struct IPriceOracle.Price",
+				"name": "price",
+				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "duration",
+				"type": "uint256"
+			}
+		],
+		"name": "rentPriceAsUSD",
 		"outputs": [
 			{
 				"components": [
@@ -676,6 +858,24 @@
 	{
 		"inputs": [],
 		"name": "withdraw",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_token",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "to",
+				"type": "address"
+			}
+		],
+		"name": "withdrawAll",
 		"outputs": [],
 		"stateMutability": "nonpayable",
 		"type": "function"

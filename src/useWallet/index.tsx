@@ -25,7 +25,7 @@ import connectors from './connectors'
 const connectorsByName = {} as { [name: string]:  any}
 
 export const walletIcons = {
-	fox: icFox,
+	metamask: icFox,
 	wallet: icWallet,
 	portis: icPortis,
 	torus: icTorus,

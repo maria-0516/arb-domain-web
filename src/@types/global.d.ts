@@ -28,7 +28,7 @@ declare interface RpcResponseType {
 	jsonrpc: 		"2.0"
 	id: 			string|number
 	result?: 		any
-	error?: 		number
+	error?: 		any
 }
 
 declare interface ServerResponse {

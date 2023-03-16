@@ -1,7 +1,7 @@
 import React from "react";
 import './search.scss';
-import arrow from '../assets/arb/img/down-arrow.svg';
-import search_icon from '../assets/arb/img/search-icon.webp';
+import arrow from '../assets/neon/img/down-arrow.svg';
+import search_icon from '../assets/neon/img/search-icon.webp';
 // import { isValidAddress } from "ethereumjs-util";
 // import { validAddress } from "../lib/utils";
 
@@ -38,9 +38,9 @@ const SearchInput = React.forwardRef(({showIcon=true, value, align, onChange, on
     return (
         <div className="search-input d-row">
             <img src={search_icon} width="50" height="43" alt="search" className={`search-img ${showIcon ? '' : 'hidden'}`} />
-            <input ref={ref} type="text" className={`app-input ${showIcon ? '' : 'pl-0'}`} minLength={3} maxLength={42} placeholder="Search names or addresses" value={value} onChange={(e) => onChange(e.target.value)} onKeyDown={e=>e.key==='Enter' && onSubmit()} />
+            <input ref={ref} type="text" className={`app-input ${showIcon ? '' : 'pl-0'}`} placeholder="Search names or addresses" value={value} onChange={(e) => onChange(e.target.value)} onKeyDown={e=>e.key==='Enter' && onSubmit()} />
             <input style={{display: 'none'}} type="checkbox" id="_check" />
-            {/* <label htmlFor="_check"  className="input-btn d-row center middle">
+            <label htmlFor="_check"  className="input-btn d-row center middle">
                 {lang}
                 <img src={arrow} alt="arrow" className="arrow-img" />
             </label>
@@ -54,7 +54,7 @@ const SearchInput = React.forwardRef(({showIcon=true, value, align, onChange, on
                         </label>
                     </li>
                 ))}
-            </ul> */}
+            </ul>
         </div>
     )
 });

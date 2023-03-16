@@ -6,7 +6,7 @@ import { Web3ReactProvider } from "@web3-react/core";
 import {configureStore} from '@reduxjs/toolkit';
 import { ethers} from "ethers";
 import './index.scss';
-import './custom.scss';
+import './neon.scss';
 import App from './App';
 
 import {slice} from './useStore'

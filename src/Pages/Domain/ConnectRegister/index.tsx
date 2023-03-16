@@ -2,8 +2,8 @@ import React from "react";
 // import { useParams } from "react-router-dom";
 
 import './newRegister.scss';
-import main_img from '../../../assets/arb/img/new-register.png';
-import logo from '../../../assets/arb/img/logo.svg';
+import main_img from '../../../assets/neon/img/new-register.png';
+import logo from '../../../assets/neon/img/logo.svg';
 import ConnectButton from "../../../components/ConnectButton";
 import Icon from "../../../components/Icon";
 import useStore from "../../../useStore";

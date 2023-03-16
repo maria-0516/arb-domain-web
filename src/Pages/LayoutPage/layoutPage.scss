@@ -4,7 +4,7 @@
 		height: auto;
 		margin: 0;
 		padding: 0;
-		background: linear-gradient(90deg,#513eff 0%,#02d0f5 100%);
+		background: url(../../assets/neon/img/app-back.svg) no-repeat left top, left top radial-gradient(69.69% 105.26% at 37.45% -2.74%, #47DDF1 0%, #5A2AE1 41.15%, #560099 67.62%, #060614 100%);
 		background-size:100% auto;
 		padding-bottom: 20px;
 		@media (max-width: 576px) {

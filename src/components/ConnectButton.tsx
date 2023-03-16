@@ -17,6 +17,15 @@ const ConnectButton = ({theme} : {theme?: 'dark' }) => {
 		wallet.disconnect();
 		updateSession({connectedWallet: {...connectedWallet, connected: false}})
 	}
+	// const [dlgStatus, setDlgStatus] = React.useState(false);
+	// const [errorDlg, setErrorDlg] = React.useState(false);
+
+	// const onClose = () => {
+	// 	setDlgStatus(false);
+	// }
+	// const onConnect =  (type: ConnectorType) => {
+	// 	wallet.connect(type);
+	// }
 	return (
 		<div className={"connectbutton " + theme}>
 			

@@ -26,7 +26,7 @@ const ConnectDialog = ({show, onClose}: DlgProps) => {
 			if (!_connect) {
 				const _switched = await wallet.switchNetwork(config.chainId)
 				if (_switched===false) {
-					const _added = await wallet.addNetwork(config.chainId, config.chainName, config.tokenName, config.symbol, 18, config.rpc[0], config.scanUrl, config.iconUrl)
+					const _added = await wallet.addNetwork(config.chainId, config.chainName, config.tokenName, config.symbol, 18, config.rpc, config.scanUrl, config.iconUrl)
 					if (_added) await wallet.connect(name);
 				} else {
 					await wallet.connect(name);
@@ -107,11 +107,11 @@ const ConnectDialog = ({show, onClose}: DlgProps) => {
 					<li className="title">Connect your wallet</li>
 					<li onClick={()=>onConnect('Injected')}>
 						<div className="img-region">
-							<img src={walletIcons.fox} alt="fox" style={{width: '64px', height: 'auto'}} />
+							<img src={walletIcons.metamask} alt="metamask" style={{width: '64px', height: '64px'}} />
 						</div>
 						<div className="text-region">
-							<p className="big">MetaMask Wallet</p>
-							<p className="detail">Connect to your MetaMask account</p>
+							<p className="big">MataMask Wallet</p>
+							<p className="detail">Connect to your MataMask account</p>
 						</div>
 					</li>
 					<li onClick={()=>onConnect('WalletConnect')}>
@@ -120,7 +120,7 @@ const ConnectDialog = ({show, onClose}: DlgProps) => {
 						</div>
 						<div className="text-region">
 							<p className="big">WalletConnect</p>
-							<p className="detail">Connect to your MetaMask account</p>
+							<p className="detail">Connect to your MataMask account</p>
 						</div>
 					</li>
 					<li onClick={()=>onConnect('Portis')}>

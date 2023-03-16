@@ -22,6 +22,5 @@
 		"noImplicitAny": false
 	},
 	"exclude": ["build", "node_modules"],
-	"include": ["./src"],
-	"files": ["./hardhat.config.ts"]
+	"include": ["./src"]
 }

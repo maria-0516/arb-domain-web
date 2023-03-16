@@ -3,7 +3,7 @@ import React from "react";
 // import { Link } from "react-router-dom";
 import { Link } from "react-router-dom";
 import './subdomain.scss';
-import logo from '../../../assets/arb/img/logo.svg';
+import logo from '../../../assets/neon/img/logo.svg';
 import ConnectButton from "../../../components/ConnectButton";
 import Dialog from "../../../components/Dialog";
 import useStore, { tips } from "../../../useStore";
@@ -138,7 +138,6 @@ const Subdomain = ({domain}: SubdomainProps) => {
 			{
 				status.subdomains.length === 0 ? (
 					<div className="none-subdomains">
-						<img src={logo} alt="logo" width={512} height={512} className="logo-img" />
 						<div className="sub-main d-column center middle" style={{gap: 20}}>
 							<div className="d-row middle" style={{gap: 10}}>
 								<p className="name-text">{domain}</p>

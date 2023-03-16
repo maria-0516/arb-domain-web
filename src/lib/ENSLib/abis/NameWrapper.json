@@ -20,6 +20,16 @@
 				"internalType": "contract IDeamNameWrapper",
 				"name": "_deamname",
 				"type": "address"
+			},
+			{
+				"internalType": "bytes32",
+				"name": "_rootNodeHash",
+				"type": "bytes32"
+			},
+			{
+				"internalType": "bytes",
+				"name": "_rootNode",
+				"type": "bytes"
 			}
 		],
 		"stateMutability": "nonpayable",

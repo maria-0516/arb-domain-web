@@ -60,11 +60,11 @@ const PrimaryDomain = ({data}: PrimaryDomainProps) => {
 			{(!connectedWallet.domain || isEdit) && (
 				<div className="main-part">
 					<p className="detail-text">
-						This designates one of your {config.title} names to represent your ARBDomains account and act as your cross-platform web3 username and profile. You can only have one primary {config.title} Name per {config.chainName} account and can change it at any time.
+						This designates one of your {config.title} names to represent your NeonDomains account and act as your cross-platform web3 username and profile. You can only have one primary {config.title} Name per {config.chainName} account and can change it at any time.
 					</p> 
 					<Select options={domains} className="select" placeholder="Select a domain" onChange={onChange} />
 					<p className="detail-text">
-						Only {config.title} names that point to your ARBDomains account can be set as your Primary {config.title} Name.
+						Only {config.title} names that point to your NeonDomains account can be set as your Primary {config.title} Name.
 					</p>
 					<div className="d-row middle" style={{gap: 10}}>
 						{isEdit && <button className="btn outline" onClick={()=>setIsEdit(false)}>CANCEL</button>}

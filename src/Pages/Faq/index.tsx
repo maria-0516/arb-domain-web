@@ -15,7 +15,7 @@ const Faq = () => {
 				<div className='d-row middle' style={{gap: 5}}>
 					<div className='symbol'></div>
 					<p className='medium-text'>
-						Is ARB only for storing an ARBDomains address?
+						Is NNS only for storing an NeonDomains address?
 					</p>
 				</div>
 				<p className='small-text'>
@@ -24,13 +24,13 @@ const Faq = () => {
 				<div className='d-row middle' style={{gap: 5}}>
 					<div className='symbol'></div>
 					<p className='medium-text'>
-						Can I use an ARB name to point to my website?
+						Can I use an NNS name to point to my website?
 					</p>
 				</div>
 				<p className='small-text'>
-					Though ARB can technically store anything, there aren't many third party tools and applications which resolve IP addresses attached to ARB.
-					Instead, we suggest hosting your static html/css/images on IPFS and put the hash in your ARB name's Content record. Then it can be resolved by ARB-aware browsers (e.g. Opera), browser extARBions (Metamask), or any browser with ".link" or ".limo" appended to the end (e.g. matoken.eth.link or matoken.eth.limo).
-					If you want to redirect your ARB name to an existing website, you could write a html file containing JavaScript logic to redirect to your website, upload the file into ipfs using services like IPFS Pinata, then set the CID to your contenthash. See the source code of depositcontract.eth.limo as an example.
+					Though NNS can technically store anything, there aren't many third party tools and applications which resolve IP addresses attached to NNS.
+					Instead, we suggest hosting your static html/css/images on IPFS and put the hash in your NNS name's Content record. Then it can be resolved by NNS-aware browsers (e.g. Opera), browser extNNSions (Metamask), or any browser with ".link" or ".limo" appended to the end (e.g. matoken.eth.link or matoken.eth.limo).
+					If you want to redirect your NNS name to an existing website, you could write a html file containing JavaScript logic to redirect to your website, upload the file into ipfs using services like IPFS Pinata, then set the CID to your contenthash. See the source code of depositcontract.eth.limo as an example.
 				</p>
 				<div className='d-row middle' style={{gap: 5}}>
 					<div className='symbol'></div>
@@ -62,7 +62,7 @@ const Faq = () => {
 				<div className='d-row middle' style={{gap: 5}}>
 					<div className='symbol'></div>
 					<p className='medium-text'>
-						Is ARB only for storing an ARBDomains address?
+						Is NNS only for storing an NeonDomains address?
 					</p>
 				</div>
 				<p className='small-text'>
@@ -91,7 +91,7 @@ const Faq = () => {
 				It depends on the gas price. You can check the historical registration and extending transaction costs here . "Transaction cost (USD)" query will tell you how much it costs to register (commit + registerWithConfig) and extend registration.
 				</p>
 				<p className='small-text'>
-				Please bear in mind that "registerWithConfig" combines 3 transactions (register, set resolver and set eth address) hence the gas cost is relatively expARBive.
+				Please bear in mind that "registerWithConfig" combines 3 transactions (register, set resolver and set eth address) hence the gas cost is relatively expNNSive.
 				</p>
 				<div className='d-row middle' style={{gap: 5}}>
 					<div className='symbol'></div>
@@ -100,7 +100,7 @@ const Faq = () => {
 					</p>
 				</div>
 				<p className='small-text'>
-				Yes, you can import into ARB any DNS name with the required DNSSEC.
+				Yes, you can import into NNS any DNS name with the required DNSSEC.
 				</p>
 				<p className='small-text'>
 				Please refer to our guide for more detail.
@@ -136,7 +136,7 @@ const Faq = () => {
 					</p>
 				</div>
 				<p className='small-text'>
-				This happARB occasionally when the USD price changes and you haven't registered with enough ARB. Please try again from step 3.
+				This happNNS occasionally when the USD price changes and you haven't registered with enough ARB. Please try again from step 3.
 				</p>
 				<p className='small-text'>
 				Please also be noted that the registration step will expire if you don't complete within 24 hrs and you have to start from step 1 again.
@@ -144,11 +144,11 @@ const Faq = () => {
 				<div className='d-row middle' style={{gap: 5}}>
 					<div className='symbol'></div>
 					<p className='medium-text'>
-					I cannot see the names I registered on OpARBea nor on my wallet
+					I cannot see the names I registered on OpNNSea nor on my wallet
 					</p>
 				</div>
 				<p className='small-text'>
-				This occasionally happARB when OpARBea is under a heavy load. You may also not find your name under the NFT section of your wallet, as many wallets fetch metadata from OpARBea.
+				This occasionally happNNS when OpNNSea is under a heavy load. You may also not find your name under the NFT section of your wallet, as many wallets fetch metadata from OpNNSea.
 				</p>
 				<p className='small-text'>
 				As long as you can see your registered name under "My Account" on our site or your ARB address under the name section, your name is registered successfully.
@@ -172,7 +172,7 @@ const Faq = () => {
 					</p>
 				</div>
 				<p className='small-text'>
-				If your ARB address is set as the Controller you can change the resolver and add/edit records. Some dapps (eg: Fleek, OpARBea) set themselves as the Controller so they can update records on your behalf.
+				If your ARB address is set as the Controller you can change the resolver and add/edit records. Some dapps (eg: Fleek, OpNNSea) set themselves as the Controller so they can update records on your behalf.
 				</p>
 				<p className='small-text'>
 				The Registrant only exists on ".eth" names and it allows you to change the Controller. If you transfer the Registrant to an address you don't own, you lose the ownership of the name.
@@ -184,19 +184,19 @@ const Faq = () => {
 					</p>
 				</div>
 				<p className='small-text'>
-				A Resolver is a smart contract that holds records. Names are set by default to the Public Resolver managed by the ARB team and has all the standard ARB record types. You can set your Resolver to a custom resolver contract if you,d like.
+				A Resolver is a smart contract that holds records. Names are set by default to the Public Resolver managed by the NNS team and has all the standard NNS record types. You can set your Resolver to a custom resolver contract if you,d like.
 				</p>
 				<div className='d-row middle' style={{gap: 5}}>
 					<div className='symbol'></div>
 					<p className='medium-text'>
-					What is a Primary ARB Name record?
+					What is a Primary NNS Name record?
 					</p>
 				</div>
 				<p className='small-text'>
-				A Primary ARB Name record (formerly Reverse Record) makes your ARB address point to an ARB name. This allows dapps to find and display your ARB name when you connect to them with your ARB account. This can only be set by you so it is not set automatically upon registration.
+				A Primary NNS Name record (formerly Reverse Record) makes your ARB address point to an NNS name. This allows dapps to find and display your NNS name when you connect to them with your ARB account. This can only be set by you so it is not set automatically upon registration.
 				</p>
 				<p className='small-text'>
-				To set the Primary ARB Name record, please click "My account", and select "Primary ARB Name".
+				To set the Primary NNS Name record, please click "My account", and select "Primary NNS Name".
 				</p>
 				<div className='d-row middle' style={{gap: 5}}>
 					<div className='symbol'></div>
@@ -225,7 +225,7 @@ const Faq = () => {
 				<div className='d-row middle' style={{gap: 5}}>
 					<div className='symbol'></div>
 					<p className='medium-text'>
-					I cannot see the names I registered on OpARBea nor on my wallet
+					I cannot see the names I registered on OpNNSea nor on my wallet
 					</p>
 				</div>
 				<p className='small-text'>
@@ -238,7 +238,7 @@ const Faq = () => {
 					</p>
 				</div>
 				<p className='small-text'>
-				ARB names are stored as a hash on-chain so we have to decode the name using a list of possible names, and it shows in the hashed format if we don't have it on our list. You can still access and manage the name if you search for the name directly in the search bar.
+				NNS names are stored as a hash on-chain so we have to decode the name using a list of possible names, and it shows in the hashed format if we don't have it on our list. You can still access and manage the name if you search for the name directly in the search bar.
 				</p>
 				<div className='d-row middle' style={{gap: 5}}>
 					<div className='symbol'></div>
@@ -255,7 +255,7 @@ const Faq = () => {
 				<div className='d-row middle' style={{gap: 5}}>
 					<div className='symbol'></div>
 					<p className='medium-text'>
-					How do I receive an extARBion reminder?
+					How do I receive an extNNSion reminder?
 					</p>
 				</div>
 				<p className='small-text'>
@@ -264,7 +264,7 @@ const Faq = () => {
 				<div className='d-row middle' style={{gap: 5}}>
 					<div className='symbol'></div>
 					<p className='medium-text'>
-					What happARB if I forget to extend the registration of a name?
+					What happNNS if I forget to extend the registration of a name?
 					</p>
 				</div>
 				<p className='small-text'>
@@ -277,7 +277,7 @@ const Faq = () => {
 					</p>
 				</div>
 				<p className='small-text'>
-				You can see the list at the "ARB Names to be released" section of the Dune Analytics dashboard .
+				You can see the list at the "NNS Names to be released" section of the Dune Analytics dashboard .
 				</p>
 				<div className='d-row middle' style={{gap: 5}}>
 					<div className='symbol'></div>
@@ -286,7 +286,7 @@ const Faq = () => {
 					</p>
 				</div>
 				<p className='small-text'>
-				Any ARB account can pay to extend the registration of any ARB name, though doing so from an account that's not the owner will not change ownership of the name. Just go to the name's page and click "Extend".
+				Any ARB account can pay to extend the registration of any NNS name, though doing so from an account that's not the owner will not change ownership of the name. Just go to the name's page and click "Extend".
 				</p>
 				<div className='d-row middle' style={{gap: 5}}>
 					<div className='symbol'></div>
@@ -295,7 +295,7 @@ const Faq = () => {
 					</p>
 				</div>
 				<p className='small-text'>
-				Yes, you can get your deposit back from reclaim.ARB.domains whether you extended the registration of the name or not.
+				Yes, you can get your deposit back from reclaim.NNS.domains whether you extended the registration of the name or not.
 				</p>
 				<p className='small-text'>
 				Please remember that the amount you will receive is the amount of the second-highest bidder (unless you were the only bidder). For example, if you bid 1 ARB and the second highest bidder bid 0.1 ARB, you deposited 0.1 ARB and you have already received the remaining (0.9 ARB) when you finailsed the auction. Therefore you can now only reclaim 0.1 ARB back. Please read the the initial guide back in 2017 for more detail.

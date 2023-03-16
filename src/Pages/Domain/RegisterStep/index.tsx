@@ -4,10 +4,11 @@ import React from 'react';
 import Progress from 'react-progressbar';
 
 import './progress.scss';
-// import bell from '../../../assets/arb//img/bell.svg';
-import gray_polygon from '../../../assets/arb//img/gray-polygon.svg';
-import green_polygon from '../../../assets/arb//img/green-polygon.svg';
-import bag from '../../../assets/arb/img/bag.svg';
+// import bell from '../../../assets/neon/img/bell.svg';
+import gray_polygon from '../../../assets/neon/img/gray-polygon.svg';
+import green_polygon from '../../../assets/neon/img/green-polygon.svg';
+import bag from '../../../assets/neon/img/bag.svg';
+import logo from '../../../assets/neon/img/logo.svg';
 import useStore, { now, tips } from '../../../useStore';
 import useWallet from '../../../useWallet';
 import { abis, Contracts, getLimitTime } from '../../../lib/ENSLib';
@@ -27,37 +28,37 @@ const RegisterStep = ({domain, stepTime}: RegisterStepProps) => {
 	const [progressValue, setProgressValue] = React.useState(33);
 
 	const onSubmit = async () => {
-		// update({loading: true})
-		// try {
-		// 	if (wallet.library && reg.commitment && reg.params) {
-		// 		const {_min, _max} = await getLimitTime(reg.commitment);
-		// 		if ((now() - reg.timestamp) > _max) {
-		// 			update({loading: false, reg: {...reg, commitment: '', params: []}})
-		// 		} else if ((now() - reg.timestamp) > _min) {
-		// 			const signer = wallet.library.getSigner();
-		// 			const value = ethers.utils.parseEther(String(reg.price * 1.1));
-		// 			const ethRegistrarController = new ethers.Contract(Contracts.ethRegistrarController, abis.controller, signer);
-		// 			const tx = await ethRegistrarController.register(...reg.params, {value});
-		// 			await tx.wait();
-		// 			update({loading: false, reg: {...reg, commitment: '', params: [], timestamp: 0}})
-		// 			navigator(`/name/${domain}`)
-		// 			return
-		// 		} else {
-		// 			tips("Please wait for minimum commitment time.")    
-		// 		}
-		// 	} else {
-		// 		update({loading: false})
-		// 		tips("Caused unexpected error")
-		// 	}
-		// } catch (error: any) {
-		// 	if (error.code==='ACTION_REJECTED' || error.code===4001) {
-		// 		tips("The registeration operation was canceled.")
-		// 	} else {
-		// 		tips(error.reason)
-		// 	}
-		// 	console.log(error)
-		// 	update({loading: false})
-		// }
+		update({loading: true})
+		try {
+			if (wallet.library && reg.commitment && reg.params) {
+				const {_min, _max} = await getLimitTime(reg.commitment);
+				if ((now() - reg.timestamp) > _max) {
+					update({loading: false, reg: {...reg, commitment: '', params: []}})
+				} else if ((now() - reg.timestamp) > _min) {
+					const signer = wallet.library.getSigner();
+					const value = ethers.utils.parseEther(String(reg.price * 1.1));
+					const ethRegistrarController = new ethers.Contract(Contracts.ethRegistrarController, abis.controller, signer);
+					const tx = await ethRegistrarController.register(...reg.params, {value});
+					await tx.wait();
+					update({loading: false, reg: {...reg, commitment: '', params: [], timestamp: 0}})
+					navigator(`/name/${domain}`)
+					return
+				} else {
+					tips("Please wait for minimum commitment time.")    
+				}
+			} else {
+				update({loading: false})
+				tips("Caused unexpected error")
+			}
+		} catch (error: any) {
+			if (error.code==='ACTION_REJECTED' || error.code===4001) {
+				tips("The registeration operation was canceled.")
+			} else {
+				tips(error.reason)
+			}
+			console.log(error)
+			update({loading: false})
+		}
 	}
 
 	React.useEffect(() => {

@@ -7,35 +7,23 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 import Home from './Pages/Home'
-// import AppPage from './Pages/AppPage'
-// import Faq from './Pages/Faq'
-// import Favorites from './Pages/Favorites';
-// import LayoutPage from './Pages/LayoutPage' 
-// import Domain from './Pages/Domain'
+import AppPage from './Pages/AppPage'
+import Faq from './Pages/Faq'
+import Favorites from './Pages/Favorites';
+import LayoutPage from './Pages/LayoutPage' 
+import Domain from './Pages/Domain'
 // import Address from './Pages/Address'
-// import NoPage from './Pages/404' 
-// import About from './Pages/About'
-// import Governance from './Pages/Governance'
-// import Community from './Pages/Community'
-// import Team from './Pages/Team'
-// import Jobs from './Pages/Jobs'
-// import Docs from './Pages/Docs'
+import NoPage from './Pages/404' 
+import About from './Pages/About'
+import Governance from './Pages/Governance'
+import Community from './Pages/Community'
+import Team from './Pages/Team'
+import Jobs from './Pages/Jobs'
+import Docs from './Pages/Docs'
 // import useWallet, { ConnectorType } from './useWallet';
 import useStore from './useStore';
 import ConnectDialog from './components/ConnectDialog';
 import { IconViewer } from './components/Icon';
-// import AppPage from './Pages/AppPage';
-import NoPage from './Pages/404';
-import LayoutPage from './Pages/LayoutPage';
-import Domain from './Pages/Domain';
-import About from './Pages/About';
-import Faq from './Pages/Faq';
-import Favorites from './Pages/Favorites';
-import Governance from './Pages/Governance';
-import Community from './Pages/Community';
-import Team from './Pages/Team';
-import Jobs from './Pages/Jobs';
-import Docs from './Pages/Docs';
 
 // import useWallet from './useWallet'
 // import { tips } from './useStore'
@@ -47,9 +35,9 @@ function App() {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route path='/' element={<Home />} />
+				{/* <Route path='/' element={<Home />} /> */}
 				<Route path='/icons' element={<IconViewer />} />
-				{/* <Route path='/app' element={<AppPage />} /> */}
+				<Route path='/' element={<AppPage />} />
 				<Route path='/governance' element={<Governance />} />
 				<Route path='/community' element={<Community />} />
 				<Route path='/team' element={<Team />} />

@@ -10,10 +10,12 @@
 		position: relative;
 		width: 30px;
 		height: 30px;
+		padding: 0 !important;
 
 		div {
 			transform-origin: 15px 15px;
 			animation: lds-spinner 1.2s linear infinite;
+			padding: 0 !important;
 			&:after {
 				content: " ";
 				display: block;

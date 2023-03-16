@@ -1,13 +1,14 @@
 // import { EtherscanProvider } from '@ethersproject/providers';
 import { ethers } from 'ethers'
 // import namehash from '@deamtest/ens-namehash'
-import {N, provider, zeroAddress} from '../../useStore';
+import {N, provider, providerEth, zeroAddress} from '../../useStore';
 import abiDeamNameWrapper from './abis/DeamNameWrapper.json';
 import abiController from './abis/ETHRegistrarController.json';
 import abiDummyOracle from './abis/DummyOracle.json';
 import abiPublicResolver from './abis/PublicResolver.json';
 import abiNameWrapper from './abis/NameWrapper.json';
 import abiReverseRegistrar from './abis/ReverseRegistrar.json';
+import abiDeamEtherVaults from './abis/DeamEtherVaults.json'
 import contracts from './contracts.json';
 import namehash from '../namehash';
 // import { formatEthers } from '../utils';
@@ -24,13 +25,36 @@ export const abis = {
 	dummyOracle: abiDummyOracle,
 	nameWrapper: abiNameWrapper,
 	publicResolver: abiPublicResolver,
-	reverseRegistrar: abiReverseRegistrar
+	reverseRegistrar: abiReverseRegistrar,
+	deamEtherVaults: abiDeamEtherVaults
 }
+
+
+export const iNameWrapper = new ethers.utils.Interface([
+	"function getExtendedPrices (string[] memory _names, uint duration) public view returns (uint _basePrice, uint _premiumPrice, uint _etherPrice)",
+])
+
+export const iRegistrar = new ethers.utils.Interface([
+	"function getPrice(string memory name, uint256 duration) public view returns (uint price)",
+	"function getPriceAsUSD(string memory name, uint256 duration) public view returns (uint price)",
+])
+
+const abiEtherVaults = [
+	"function getPrice(string memory _label, uint _duration, bool _asUsd) public view returns (uint _price)",
+	"function getExtendedPrices(string[] memory _labels, uint _duration, bool _asUsd) public view returns (uint _price)"
+]
+export const iEtherVaults = new ethers.utils.Interface(abiEtherVaults)
+// export const deamEtherVaults = new ethers.Contract(contracts.ethereum.deamVaults, abiEtherVaults, providerEth); 
+
+// export const ifaceSfc = new ethers.Interface(abiSFC);
 
 const publicResolver = new ethers.Contract(contracts.publicResolver, abiPublicResolver, provider);
 const deamNameWrapper = new ethers.Contract(contracts.deamNameWrapper, abiDeamNameWrapper, provider);
 const ethRegistrarController = new ethers.Contract(contracts.ethRegistrarController, abiController, provider);
-const dummyOracle = new ethers.Contract(contracts.dummyOracle, abiDummyOracle, provider);
+const dummyOracle = new ethers.Contract(contracts.dummyOracle, abiDummyOracle, provider); 
+// const deamEtherVaults = new ethers.Contract(contracts.ethereum.deamVaults, abiDeamEtherVaults, providerEth); 
+
+
 // const publicResolver = new ethers.Contract(contracts.publicResolver, abiPublicResolver, provider);
 
 // const bytesToHex = (text: string) => ('0x' + Array.from(new TextEncoder().encode(text), byte => byte.toString(16).padStart(2, "0")).join(""));
@@ -86,7 +110,7 @@ export const getDomainByName = async (name: string) => {
 					comDiscord: _texts[k++],
 					comReddit: _texts[k++],
 					orgTelegram: _texts[k++],
-					arbDelegate: _texts[k++]
+					neonDelegate: _texts[k++]
 				},
 				prices: {
 					basePrice, 
@@ -231,3 +255,11 @@ export const getDomainInfo = async (domain: string) => {
 		subs: d._subs,
 	}
 }
+
+// export const getEtherDomainPrice = async (label: string, duration: number, asUsd: boolean) => {
+// 	return await deamEtherVaults.getPrice(label, duration, asUsd);
+// }
+
+// export const getEtherExtendDomainsPrice = async (label: string[], duration: number, asUsd: boolean) => {
+// 	return await deamEtherVaults.getExtendedPrices(label, duration, asUsd);
+// }

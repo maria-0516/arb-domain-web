@@ -27,7 +27,7 @@ const defaultTitles = {
 	'keywords': 'keywords',
 	'com.reddit': 'com.reddit',
 	'org.telegram': 'org.telegram',
-	'arb.delegate': 'arb.delegate',
+	'neon.delegate': 'neon.delegate',
 	'com.twitter': 'com.twitter',
 	'snapshot': 'snapshot'
 }
@@ -37,7 +37,7 @@ interface DetailDialogType {
 	title: string
 	placeholder: string
 	value: string
-	action: ''|'transfer'|'resolver'|'contenthash'|'email'|'url'|'avatar'|'description'|'notice'|'keywords'|'com.discord'|'com.github'|'com.reddit'|'com.twitter'|'org.telegram'|'arb.delegate' 
+	action: ''|'transfer'|'resolver'|'contenthash'|'email'|'url'|'avatar'|'description'|'notice'|'keywords'|'com.discord'|'com.github'|'com.reddit'|'com.twitter'|'org.telegram'|'neon.delegate' 
 	error: string
 }
 interface DetailStatus {

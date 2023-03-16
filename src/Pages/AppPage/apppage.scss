@@ -1,0 +1,121 @@
+.app {
+	.back {
+		min-height: 100vh;
+		height: auto;
+		margin: 0;
+		padding: 0;
+		background: url(../../assets/neon/img/app-back.svg) no-repeat left top, left top radial-gradient(69.69% 105.26% at 37.45% -2.74%, #47DDF1 0%, #5A2AE1 41.15%, #560099 67.62%, #060614 100%);
+		background-size:cover;
+		.header {
+			position: fixed;
+			top: 0;
+			left: 0;
+			height: auto;
+			width: 100%;
+			border: 0;
+			padding: 10px;
+			.border {
+				padding: 10px;
+				border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+			}
+			a {
+				color: white;
+				// text-transform: uppercase;
+				font-size: 12px;  
+				&:hover {
+					color: #b8f068;
+				}
+				&:active {
+					color: #95ff00;
+				}
+			}
+		}
+		.hamburger {
+			display: none;
+		}
+		@media (max-width: 576px) {
+			.header {
+				display: none;
+			}
+			.hamburger {
+				display: block;
+			}
+		}
+		.main {
+			.title {
+				text-align: center;
+				// text-transform: uppercase;
+				background: linear-gradient(90deg, #FFFFFF 10.26%, #DB73FF 89.85%);
+				-webkit-background-clip: text;
+				-webkit-text-fill-color: transparent;
+				background-clip: text;
+				font-weight: 275;
+				font-size: 60px;
+				line-height: 100%;
+				margin: 0;
+				@media (max-width: 992px) {
+					font-size: 50px;
+				}
+				@media (max-width: 576px) {
+					font-size: 35px;
+				}
+			}
+		}
+		.sch-btn {
+			padding: 15px 50px;
+			background: linear-gradient(222.61deg, #E7FFC0 9.61%, #AEEF54 108.76%);
+			box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
+			border-radius: 3px;
+			font-size: 18px;
+			line-height: 23px;
+			text-align: center;
+			// text-transform: uppercase;
+			color: #530E98;
+
+			&:hover {
+				background: linear-gradient(222.61deg, #cff496 9.61%, #9af718 108.76%);
+			}
+
+			&:active {
+				background: linear-gradient(222.61deg, #bef468 9.61%, #8ff401 108.76%);
+			}
+		}
+		.input-area {
+			width: 90%;
+			max-width: 800px;
+			height: auto;
+		}
+		.footer {
+			position: absolute;
+			left: 0;
+			bottom: 0;
+			width: 100%;
+			font-size: 12px;
+			line-height: 180%;
+			text-align: center;
+			color: #D0D4EA;
+			padding-bottom: 15px;
+		}
+	}
+	.mobile-connect {
+		position: absolute;
+		top: 90px;
+		display: none;
+		width: 100%;
+		justify-content: center;
+		align-items: center;
+	}
+	.mobile-empty {
+		width: 0;
+		height: 0;
+	}
+	@media (max-width: 576px) {
+		.mobile-connect {
+			display: flex;
+		}
+		.mobile-empty {
+			width: 10px;
+			height: 50px;
+		}
+	}
+}
