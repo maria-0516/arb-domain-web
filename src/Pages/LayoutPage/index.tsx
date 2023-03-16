@@ -91,7 +91,7 @@ const LayoutPage = (LayoutProps: any) => {
 					</div>
 				</div>
 				<div className='footer d-row center middle'>
-					@2022 NeonDomains - powered by NeonLink
+					@2022 dotarb - powered by dotarb
 				</div>
 			</div>
 			{loading && <Loading />}

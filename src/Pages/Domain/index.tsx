@@ -195,7 +195,7 @@ const Domain = () => {
 					</div>
 					<div className="d-row center middle" style={{lineBreak: 'anywhere'}}>{address}</div>
 					<div className="d-row middle" style={{gap: 5}}>
-						<Link to={`${config.scanUrl}/address/${address}`} target="_blank" rel="noreferrer" className="purple-text">View on Neonscan</Link>
+						<Link to={`${config.scanUrl}/address/${address}`} target="_blank" rel="noreferrer" className="purple-text">View on arbiscan</Link>
 						<img src={arrow} alt="arrow" style={{marginRight: 15}} />
 					</div>
 				</div>

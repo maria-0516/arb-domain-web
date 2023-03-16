@@ -90,7 +90,7 @@ const AppPage = () => {
 				</div>
 				<div className='footer d-row center middle'>
 					<span>
-						@2022 NeonDomains - powered by <b>NeonLink</b>
+						@2022 dotarb - powered by <b>dotarb</b>
 					</span>
 				</div>
 			</div>

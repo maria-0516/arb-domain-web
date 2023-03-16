@@ -235,7 +235,7 @@ const Home = () => {
 						</section>
 						<section className='blockchain'>
 							<div>
-								<p className='letter'>NNS is the most widely integrated</p>
+								<p className='letter'>.ARB is the most widely integrated</p>
 								<p className='letter'>blockchain naming standard</p>
 							</div>
 							<div className='row center' style={{gap:'2em'}}>
@@ -259,7 +259,7 @@ const Home = () => {
 						<section className='half section-align md-pb-0'>
 							<div className='col-lg-6 col-md-12'>
 								<p className='title'>ONE NAME FOR ALL OF YOUR ADDRESSES</p>
-								<p className='detail'>No more copying and pasting long addresses. Use your NNS name to store all of your addresses and receive any cryptocurrency, token, or NFT.</p>
+								<p className='detail'>No more copying and pasting long addresses. Use your .ARB name to store all of your addresses and receive any cryptocurrency, token, or NFT.</p>
 							</div>
 							<div className='col-lg-6 col-md-12 group'>
 								<img src={group} alt="group" className='group-img'/>
@@ -279,7 +279,7 @@ const Home = () => {
 						<img src={wave_4} alt="wave-4" className='absolute-img' />
 						<section className='white'>
 							<p className='title'>USE TRADITIONAL DOMAINS</p>
-							<p className='detail'>The native suffix for NNS is .ARB which has the full security benefits of being blockchain-native.</p>
+							<p className='detail'>The native suffix for .ARB is .ARB which has the full security benefits of being blockchain-native.</p>
 							<div style={{backgroundColor:'rgba(246, 245, 255, 1)',padding:'10px 20px'}}>
 								<p className='medium'>.com .org .69 .io .xyz .app .art</p>
 							</div>
@@ -289,7 +289,7 @@ const Home = () => {
 					<div className='relative d-column center middle' style={{zIndex:11}}>
 						<img src={wave_5} alt="wave-5" className='absolute-img' />
 						<section className='bottom'>
-							<p className='title'>NNS ECOSYSTEM</p>
+							<p className='title'>.ARB ECOSYSTEM</p>
 							<div className='sys-group'>
 								<div className='d-column center middle area'>
 									<img src={wallet} alt="wallet" style={{width:50}} />
