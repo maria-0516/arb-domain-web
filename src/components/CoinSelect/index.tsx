@@ -53,17 +53,16 @@ const CoinSelect = ({onClose, data, year, isExtend}: CoinSelectProps) => {
 				update({loading: true})
 				const signer = wallet.library.getSigner();
 				const acceptToken = new ethers.Contract(Contracts.acceptToken, ERC20Abi, signer);
-				const value = ethers.utils.parseUnits(String(status.price.arb * 1.1), 9)
+				const value = ethers.utils.parseUnits(NF(status.price.arb * 1.1), 9)
 				console.log('value', value)
 				const tx = await acceptToken.approve(Contracts.ethRegistrarController, value);
 				await tx.wait();
 				update({loading: false})
 				if (isExtend) {
-					renew(signer)
+					return renew(signer)
 				} else {
-					register(signer)
+					return register(signer)
 				}
-				return onClose()
 			}
 		} catch (error) {
 			console.log("coin select", error)
@@ -82,7 +81,8 @@ const CoinSelect = ({onClose, data, year, isExtend}: CoinSelectProps) => {
 				const ethRegistrarController = new ethers.Contract(Contracts.ethRegistrarController, abis.controller, signer);
 				const tx = await ethRegistrarController.commit(commitment);
 				await tx.wait();
-				return update({loading: false, reg: {...reg, commitment, params, price: status.price.arb, timestamp: now(), domain: `${data[0]}.${config.rootDomain}`}})
+				update({loading: false, reg: {...reg, commitment, params, price: status.price.arb, timestamp: now(), domain: `${data[0]}.${config.rootDomain}`}})
+				return onClose()
 			}
 		} catch (error: any) {
 			if (error.code==='ACTION_REJECTED' || error.code===4001) {
@@ -102,6 +102,7 @@ const CoinSelect = ({onClose, data, year, isExtend}: CoinSelectProps) => {
 				const deamNameWrapper = new ethers.Contract(Contracts.deamNameWrapper, abis.deamNameWrapper, signer);
 				const tx = await deamNameWrapper.renew(data, year * 86400 * 366);
 				await tx.wait();
+				onClose()
 			}
 		} catch (error: any) {
 			if (error.code==='ACTION_REJECTED' || error.code===4001) {
