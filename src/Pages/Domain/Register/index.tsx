@@ -11,7 +11,6 @@ import useStore, { config, encodeCall, fetchJson, getExpectedDomainPrice, N, NF,
 import { ethers } from "ethers";
 import { isSubdomain } from "../../../lib/utils";
 import CoinSelect from "../../../components/CoinSelect";
-import ERC20Abi from '../../../config/abis/ERC20.json'
 
 interface RegisterStatus {
 	inited: boolean
@@ -27,7 +26,6 @@ interface RegisterStatus {
 
 // const gasLimitSubmit = 1e5;
 // const gasLimitRegister = 5e5;
-const MAX_EXPIRY = Math.round(new Date().getTime() / 1000) + 86400 * 366 
 
 const Register = ({domain, prices, ownerAddress}: {domain: string, prices: PricesType, ownerAddress: string}) => {
 	const {connectedWallet, reg, update, favorites} = useStore();
@@ -80,18 +78,18 @@ const Register = ({domain, prices, ownerAddress}: {domain: string, prices: Price
 		update({favorites: _favorites})
 	}
 
-	const onSubmit = async () => {
-		update({loading: true})
-		try {
-			if (wallet.library) {
+	// const onSubmit = async () => {
+	// 	update({loading: true})
+	// 	try {
+	// 		if (wallet.library) {
 				// const provider = new ethers.providers.Web3Provider(wallet.library.provider);
 				
-				const signer = wallet.library.getSigner();
-				console.log(signer.getAddress());
+				// const signer = wallet.library.getSigner();
+				// console.log(signer.getAddress());
 				
-				const acceptToken = new ethers.Contract(Contracts.acceptToken, ERC20Abi, signer);
-				const approve = await acceptToken.approve(Contracts.ethRegistrarController, ethers.utils.parseEther(String(status.price * 1.1)));
-				await approve.wait();
+				// const acceptToken = new ethers.Contract(Contracts.acceptToken, ERC20Abi, signer);
+				// const approve = await acceptToken.approve(Contracts.ethRegistrarController, ethers.utils.parseUnits(String(status.price * 1.1), 9));
+				// await approve.wait();
 				// const params = [
 				// 	encodeCall(new ethers.utils.Interface(["function approve(address spender, uint amount) public returns (bool)"]), Contracts.acceptToken, "approve", [Contracts.ethRegistrarController, status.price], 1)
 				// ]
@@ -102,25 +100,25 @@ const Register = ({domain, prices, ownerAddress}: {domain: string, prices: Price
 				// } else {
 				// 	console.log("json null")
 				// }
-				const secret = await WebCrypto.hash(connectedWallet.address + Date.now())
-				const label  = domain.slice(0, -5);
-				const params = [label, connectedWallet.address || '', reg.year * 86400 * 366, '0x' + secret, Contracts.publicResolver, [] as string[], false, 0, MAX_EXPIRY]
-				const commitment = await getCommitment.apply(null, params as any) as string
-				const ethRegistrarController = new ethers.Contract(Contracts.ethRegistrarController, abis.controller, signer);
-				const tx = await ethRegistrarController.commit(commitment);
-				await tx.wait();
-				update({loading: false, reg: {...reg, commitment, params, price: status.price, timestamp: now(), domain}})
-			}
-		} catch (error: any) {
-			if (error.code==='ACTION_REJECTED' || error.code===4001) {
-				tips("The registeration operation was canceled.")
-			} else {
-				tips(error.reason)
-			}
-			console.log(error)
-		}
-		update({loading: false})
-	}
+				// const secret = await WebCrypto.hash(connectedWallet.address + Date.now())
+				// const label  = domain.slice(0, -5);
+				// const params = [label, connectedWallet.address || '', reg.year * 86400 * 366, '0x' + secret, Contracts.publicResolver, [] as string[], false, 0, MAX_EXPIRY]
+				// const commitment = await getCommitment.apply(null, params as any) as string
+				// const ethRegistrarController = new ethers.Contract(Contracts.ethRegistrarController, abis.controller, signer);
+				// const tx = await ethRegistrarController.commit(commitment);
+				// await tx.wait();
+				// update({loading: false, reg: {...reg, commitment, params, price: status.price, timestamp: now(), domain}})
+	// 		}
+	// 	} catch (error: any) {
+	// 		if (error.code==='ACTION_REJECTED' || error.code===4001) {
+	// 			tips("The registeration operation was canceled.")
+	// 		} else {
+	// 			tips(error.reason)
+	// 		}
+	// 		console.log(error)
+	// 	}
+	// 	update({loading: false})
+	// }
 	
 	React.useEffect(() => {
 		// if (wallet.active) {
@@ -253,7 +251,7 @@ const Register = ({domain, prices, ownerAddress}: {domain: string, prices: Price
 								<button onClick={()=>setStatus({...status, coinDialog: true})} disabled={/* status.balanceError!==-1 ||  */reg.year===0} className="register-btn">REQUEST TO REGISTER</button>
 								{
 									status.coinDialog && (
-										<CoinSelect data={[domain.slice(0, domain.indexOf("."))]} priceSum={status.price} year={year} onClose={()=>setStatus({...status, coinDialog: false})} onNext={onSubmit} />
+										<CoinSelect data={[domain.slice(0, domain.indexOf("."))]} year={year} onClose={()=>setStatus({...status, coinDialog: false})} />
 									)
 								}
 							</div>

@@ -64,28 +64,28 @@ const ExtendComponent = ({onClose, domains, onChange}: ExtendProps) => {
 		// console.log(status.priceSum)
 	}
 
-	const onComfirm = async () => {
-		update({loading: true})
-		try {
-			if (wallet.library) {
-				const signer = wallet.library.getSigner();
-				const deamNameWrapper = new ethers.Contract(Contracts.deamNameWrapper, abis.deamNameWrapper, signer);
-				const value = ethers.utils.parseEther(String(status.price * 1.01));
-				const tx = await deamNameWrapper.renew(domains, status.year * 86400 * 366, {value});
-				await tx.wait();
-				setStatus({...status, showConfirm: false})
-				onChange();
-			}
-		} catch (error: any) {
-			if (error.code==='ACTION_REJECTED' || error.code===4001) {
-				tips("The save operation was canceled.")
-			} else {
-				tips(error.reason)
-			}
-			console.log(error)
-		}
-		update({loading: false})
-	}
+	// const onComfirm = async () => {
+	// 	update({loading: true})
+	// 	try {
+	// 		if (wallet.library) {
+	// 			const signer = wallet.library.getSigner();
+	// 			const deamNameWrapper = new ethers.Contract(Contracts.deamNameWrapper, abis.deamNameWrapper, signer);
+	// 			const value = ethers.utils.parseEther(String(status.price * 1.01));
+	// 			const tx = await deamNameWrapper.renew(domains, status.year * 86400 * 366, {value});
+	// 			await tx.wait();
+	// 			setStatus({...status, showConfirm: false})
+	// 			onChange();
+	// 		}
+	// 	} catch (error: any) {
+	// 		if (error.code==='ACTION_REJECTED' || error.code===4001) {
+	// 			tips("The save operation was canceled.")
+	// 		} else {
+	// 			tips(error.reason)
+	// 		}
+	// 		console.log(error)
+	// 	}
+	// 	update({loading: false})
+	// }
 
 	React.useEffect(() => {
 		getPrices(status.year);
@@ -123,7 +123,7 @@ const ExtendComponent = ({onClose, domains, onChange}: ExtendProps) => {
 			</div>
 			{
 				status.showConfirm && (
-					<CoinSelect isExtend onNext={onComfirm} onClose={()=>setStatus({...status, showConfirm: false})} priceSum={status.price} data={domains} year={status.year} />
+					<CoinSelect isExtend onClose={()=>setStatus({...status, showConfirm: false})} data={domains} year={status.year} />
 				)
 			}
 		</div>

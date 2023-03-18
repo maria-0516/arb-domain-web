@@ -3,21 +3,23 @@ import React from "react";
 
 import './coinSelect.scss';
 import Dialog from "../../components/Dialog";
-import useStore, { config, decodeCallData, encodeCall, fetchJson, N, NF } from "../../useStore";
+import useStore, { config, decodeCallData, encodeCall, fetchJson, N, NF, now, tips } from "../../useStore";
 import logo from '../../assets/neon/img/logo.svg';
 import Spinner from "../../components/Spinner";
 import contracts from '../../lib/ENSLib/contracts.json'
-import { iNameWrapper, iRegistrar } from "../../lib/ENSLib";
+import { abis, Contracts, getCommitment, iNameWrapper, iRegistrar } from "../../lib/ENSLib";
+import { ethers } from "ethers";
+import useWallet from "../../useWallet";
+import ERC20Abi from '../../config/abis/ERC20.json'
+import WebCrypto from "../../lib/WebCrypto";
 // import { getEtherExtendDomainsPrice, getExtendedPrices } from "../../lib/ENSLib";
 
-
+const MAX_EXPIRY = Math.round(new Date().getTime() / 1000) + 86400 * 366 
 
 interface CoinSelectProps {
 	onClose():void
 	data: string[]
 	year: number
-	priceSum: number
-	onNext():void
 	isExtend?: boolean
 }
 
@@ -25,9 +27,9 @@ const coins = {
 	arb: {name: 'ARB', img: logo},
 }
 
-const CoinSelect = ({onClose, data, year, priceSum, onNext, isExtend}: CoinSelectProps) => {
-
-	const {connectedWallet} = useStore()
+const CoinSelect = ({onClose, data, year, isExtend}: CoinSelectProps) => {
+	const wallet = useWallet();
+	const {connectedWallet, reg, update} = useStore()
 	const [status, setStatus] = React.useState({
 		checking: false,
 
@@ -44,6 +46,73 @@ const CoinSelect = ({onClose, data, year, priceSum, onNext, isExtend}: CoinSelec
 	})
 
 	const [coin, setCoin] = React.useState('arb')
+
+	const submit = async () => {
+		try {
+			if (wallet.library) {
+				update({loading: true})
+				const signer = wallet.library.getSigner();
+				const acceptToken = new ethers.Contract(Contracts.acceptToken, ERC20Abi, signer);
+				const value = ethers.utils.parseUnits(String(status.price.arb * 1.1), 9)
+				console.log('value', value)
+				const tx = await acceptToken.approve(Contracts.ethRegistrarController, value);
+				await tx.wait();
+				update({loading: false})
+				if (isExtend) {
+					renew(signer)
+				} else {
+					register(signer)
+				}
+				return onClose()
+			}
+		} catch (error) {
+			console.log("coin select", error)
+		}
+		update({loading: false})
+	}
+
+	const register = async (signer: ethers.providers.JsonRpcSigner) => {
+		update({loading: true})
+		try {
+			if (wallet.library) {
+				const secret = await WebCrypto.hash(connectedWallet.address + Date.now())
+				const label  = data[0].slice(0, -5);
+				const params = [label, connectedWallet.address || '', year * 86400 * 366, '0x' + secret, Contracts.publicResolver, [] as string[], false, 0, MAX_EXPIRY]
+				const commitment = await getCommitment.apply(null, params as any) as string
+				const ethRegistrarController = new ethers.Contract(Contracts.ethRegistrarController, abis.controller, signer);
+				const tx = await ethRegistrarController.commit(commitment);
+				await tx.wait();
+				return update({loading: false, reg: {...reg, commitment, params, price: status.price.arb, timestamp: now(), domain: `${data[0]}.${config.rootDomain}`}})
+			}
+		} catch (error: any) {
+			if (error.code==='ACTION_REJECTED' || error.code===4001) {
+				tips("The registeration operation was canceled.")
+			} else {
+				tips(error.reason)
+			}
+			console.log("onRegister", error)
+		}
+		update({loading: false})
+	}
+
+	const renew = async (signer: ethers.providers.JsonRpcSigner) => {
+		update({loading: true})
+		try {
+			if (wallet.library) {
+				const deamNameWrapper = new ethers.Contract(Contracts.deamNameWrapper, abis.deamNameWrapper, signer);
+				const tx = await deamNameWrapper.renew(data, year * 86400 * 366);
+				await tx.wait();
+			}
+		} catch (error: any) {
+			if (error.code==='ACTION_REJECTED' || error.code===4001) {
+				tips("The save operation was canceled.")
+			} else {
+				tips(error.reason)
+			}
+			console.log(error)
+		}
+		update({loading: false})
+	}
 
 	const getNeonPrice = async () => {
 		setStatus({...status, checking: true})
@@ -139,7 +208,7 @@ const CoinSelect = ({onClose, data, year, priceSum, onNext, isExtend}: CoinSelec
 					</div>
 					<div className="d-row mt-1" style={{gap: '0.5em'}}>
 						<button className="cancel-btn" onClick={onClose} disabled={status.checking}>CANCEL</button>
-						<button className="save-btn d-row middle center gap" onClick={onNext} disabled={status.checking || status.balance[coin] < status.price[coin]} >
+						<button className="save-btn d-row middle center gap" onClick={submit} disabled={status.checking || status.balance[coin] < status.price[coin]} >
 							<div>{status.checking ? 'Checking...' : 'SUBMMIT'}</div>
 							{status.checking && <Spinner styles={{position: 'inherit', top: 'auto', right: 'auto', padding: '0'}} />}
 						</button>
