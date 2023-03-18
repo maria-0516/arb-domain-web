@@ -50,7 +50,7 @@ const ExtendComponent = ({onClose, domains, onChange}: ExtendProps) => {
 			}
 			// const {_basePrice, _premiumPrice, _etherPrice} = await getExtendedPrices(domains);
 			// console.log("_basePrice: ",_basePrice)
-			setStatus({...status, price, loadingPrice: false});
+			setStatus({...status, year: _year, price, loadingPrice: false});
 		} catch (error) {
 			console.log(error);
 		}
@@ -123,7 +123,7 @@ const ExtendComponent = ({onClose, domains, onChange}: ExtendProps) => {
 			</div>
 			{
 				status.showConfirm && (
-					<CoinSelect isExtend onClose={()=>setStatus({...status, showConfirm: false})} data={domains} year={status.year} />
+					<CoinSelect isExtend onClose={()=>{setStatus({...status, showConfirm: false});onChange()}} data={domains} year={status.year} />
 				)
 			}
 		</div>

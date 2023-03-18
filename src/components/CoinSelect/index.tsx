@@ -8,7 +8,7 @@ import logo from '../../assets/neon/img/logo.svg';
 import Spinner from "../../components/Spinner";
 import contracts from '../../lib/ENSLib/contracts.json'
 import { abis, Contracts, getCommitment, iNameWrapper, iRegistrar } from "../../lib/ENSLib";
-import { ethers } from "ethers";
+import { ethers, Signer } from "ethers";
 import useWallet from "../../useWallet";
 import ERC20Abi from '../../config/abis/ERC20.json'
 import WebCrypto from "../../lib/WebCrypto";
@@ -17,7 +17,7 @@ import WebCrypto from "../../lib/WebCrypto";
 const MAX_EXPIRY = Math.round(new Date().getTime() / 1000) + 86400 * 366 
 
 interface CoinSelectProps {
-	onClose():void
+	onClose()
 	data: string[]
 	year: number
 	isExtend?: boolean
@@ -50,40 +50,54 @@ const CoinSelect = ({onClose, data, year, isExtend}: CoinSelectProps) => {
 	const submit = async () => {
 		try {
 			if (wallet.library) {
-				update({loading: true})
-				const signer = wallet.library.getSigner();
-				const acceptToken = new ethers.Contract(Contracts.acceptToken, ERC20Abi, signer);
-				const value = ethers.utils.parseUnits(NF(status.price.arb * 1.1), 9)
-				console.log('value', value)
-				const tx = await acceptToken.approve(Contracts.ethRegistrarController, value);
-				await tx.wait();
-				update({loading: false})
+				const signer = wallet.library.getSigner()
+				
 				if (isExtend) {
-					return renew(signer)
+					const bApproved = await approve(signer, Contracts.deamNameWrapper)
+					if (bApproved) return renew(signer)
 				} else {
-					return register(signer)
+					const bApproved = await approve(signer, Contracts.ethRegistrarController)
+					if (bApproved) return register(signer)
 				}
 			}
 		} catch (error) {
 			console.log("coin select", error)
 		}
-		update({loading: false})
 	}
-
+	
+	const approve = async (signer: ethers.providers.JsonRpcSigner, spender: string) => {
+		update({loading: true})
+		try {
+			const acceptToken = new ethers.Contract(Contracts.acceptToken, ERC20Abi, signer);
+			const value = ethers.utils.parseUnits(NF(status.price.arb), 9)
+			console.log('value', value)
+			const tx = await acceptToken.approve(spender, value);
+			await tx.wait();
+			return true
+		} catch (error: any) {
+			if (error.code==='ACTION_REJECTED' || error.code===4001) {
+				tips("Token approve operation was canceled.")
+			} else {
+				tips(error.reason)
+			}
+			console.log("onRegister", error)	
+		}
+		update({loading: false})
+		return false
+	}
 	const register = async (signer: ethers.providers.JsonRpcSigner) => {
 		update({loading: true})
 		try {
-			if (wallet.library) {
-				const secret = await WebCrypto.hash(connectedWallet.address + Date.now())
-				const label  = data[0].slice(0, -5);
-				const params = [label, connectedWallet.address || '', year * 86400 * 366, '0x' + secret, Contracts.publicResolver, [] as string[], false, 0, MAX_EXPIRY]
-				const commitment = await getCommitment.apply(null, params as any) as string
-				const ethRegistrarController = new ethers.Contract(Contracts.ethRegistrarController, abis.controller, signer);
-				const tx = await ethRegistrarController.commit(commitment);
-				await tx.wait();
-				update({loading: false, reg: {...reg, commitment, params, price: status.price.arb, timestamp: now(), domain: `${data[0]}.${config.rootDomain}`}})
-				return onClose()
-			}
+			const secret = await WebCrypto.hash(connectedWallet.address + Date.now())
+			const label  = data[0];//.slice(0, -5);
+			const params = [label, connectedWallet.address || '', year * 86400 * 366, '0x' + secret, Contracts.publicResolver, [] as string[], false, 0, MAX_EXPIRY]
+			console.log('register parameters', params)
+			const commitment = await getCommitment.apply(null, params as any) as string
+			const ethRegistrarController = new ethers.Contract(Contracts.ethRegistrarController, abis.controller, signer);
+			const tx = await ethRegistrarController.commit(commitment);
+			await tx.wait();
+			update({loading: false, reg: {...reg, commitment, params, price: status.price.arb, timestamp: now(), domain: `${data[0]}.${config.rootDomain}`}})
+			return onClose()
 		} catch (error: any) {
 			if (error.code==='ACTION_REJECTED' || error.code===4001) {
 				tips("The registeration operation was canceled.")
@@ -98,12 +112,10 @@ const CoinSelect = ({onClose, data, year, isExtend}: CoinSelectProps) => {
 	const renew = async (signer: ethers.providers.JsonRpcSigner) => {
 		update({loading: true})
 		try {
-			if (wallet.library) {
-				const deamNameWrapper = new ethers.Contract(Contracts.deamNameWrapper, abis.deamNameWrapper, signer);
-				const tx = await deamNameWrapper.renew(data, year * 86400 * 366);
-				await tx.wait();
-				onClose()
-			}
+			const deamNameWrapper = new ethers.Contract(Contracts.deamNameWrapper, abis.deamNameWrapper, signer);
+			const tx = await deamNameWrapper.renew(data, year * 86400 * 366);
+			await tx.wait();
+			onClose()
 		} catch (error: any) {
 			if (error.code==='ACTION_REJECTED' || error.code===4001) {
 				tips("The save operation was canceled.")
@@ -162,7 +174,7 @@ const CoinSelect = ({onClose, data, year, isExtend}: CoinSelectProps) => {
 		if (coin==='arb') {
 			if (status.gasPrice.eth===-1) getNeonPrice()
 		}
-	}, [coin, connectedWallet.address])
+	}, [coin, connectedWallet.address, year])
 
 	const onCoinChange = (coin: string) => {
 		// if (status.ethBalance===-1 || status.usdtBalance===-1) {

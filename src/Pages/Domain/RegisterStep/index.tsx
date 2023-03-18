@@ -38,6 +38,7 @@ const RegisterStep = ({domain, stepTime}: RegisterStepProps) => {
 					const signer = wallet.library.getSigner();
 					// const value = ethers.utils.parseEther(String(reg.price * 1.1));
 					const ethRegistrarController = new ethers.Contract(Contracts.ethRegistrarController, abis.controller, signer);
+					console.log("reg.params", reg.params)
 					const tx = await ethRegistrarController.register(...reg.params);
 					await tx.wait();
 					update({loading: false, reg: {...reg, commitment: '', params: [], timestamp: 0}})
