@@ -132,7 +132,7 @@ const RegisterStep = ({domain, stepTime}: RegisterStepProps) => {
 				</div>
 				<Progress completed={progressValue} className="progress-bar" />
 				<div className={`bottom-part ${progressValue === 100 ? '' : 'hidden'}`}>
-					<div className='d-row center middle' style={{gap: 5}}>
+					{/* <div className='d-row center middle' style={{gap: 5}}>
 						<p className='purple-text tooltip'>
 							READ ME
 							<p className='tooltiptext'>
@@ -144,7 +144,7 @@ const RegisterStep = ({domain, stepTime}: RegisterStepProps) => {
 							</p>
 						</p>
 						<img src={bag} alt="bag" />
-					</div>
+					</div> */}
 					<p className='purple-text'>MANAGE NAME</p>
 					<button onClick={onSubmit} className='purple-btn'>SET AS PRIMARY ENS NAME</button>
 				</div>

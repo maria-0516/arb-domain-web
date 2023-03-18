@@ -64,7 +64,7 @@ const LayoutPage = (LayoutProps: any) => {
 					</div>
 				</div>
 				<div className="hamburger">
-					<Link to="/"><img src={logo} alt="logo" className='logo' style={{width: '64px', height:  '64px'}} /></Link>
+					<Link to="/"><img src={logo} alt="logo" className='logo' style={{width: '32px', height:  '32px'}} /></Link>
 					<input style={{display: 'none'}} type="checkbox" id="__hamburger" />
 					<label htmlFor="__hamburger">
 						<span></span>

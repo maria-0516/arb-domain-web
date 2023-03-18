@@ -39,7 +39,7 @@ const SearchInput = React.forwardRef(({showIcon=true, value, align, onChange, on
         <div className="search-input d-row">
             <img src={search_icon} width="50" height="43" alt="search" className={`search-img ${showIcon ? '' : 'hidden'}`} />
             <input ref={ref} type="text" className={`app-input ${showIcon ? '' : 'pl-0'}`} placeholder="Search names or addresses" value={value} onChange={(e) => onChange(e.target.value)} onKeyDown={e=>e.key==='Enter' && onSubmit()} />
-            <input style={{display: 'none'}} type="checkbox" id="_check" />
+            {/* <input style={{display: 'none'}} type="checkbox" id="_check" />
             <label htmlFor="_check"  className="input-btn d-row center middle">
                 {lang}
                 <img src={arrow} alt="arrow" className="arrow-img" />
@@ -54,7 +54,7 @@ const SearchInput = React.forwardRef(({showIcon=true, value, align, onChange, on
                         </label>
                     </li>
                 ))}
-            </ul>
+            </ul> */}
         </div>
     )
 });

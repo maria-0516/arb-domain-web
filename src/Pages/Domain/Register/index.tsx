@@ -143,7 +143,7 @@ const Register = ({domain, prices, ownerAddress}: {domain: string, prices: Price
 				<div>
 					{isSubdomain(domain) ? (
 						<div className="registered">
-							<span>You can't register the subdomain.Please add this in [add subdomain] page.</span>
+							<span>You can't register the subdomain. Please add this in [add subdomain] page.</span>
 						</div>
 					) : (
 						<div className="register-page">

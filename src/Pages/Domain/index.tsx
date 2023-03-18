@@ -209,7 +209,7 @@ const Domain = () => {
 				<>
 					{status.currentPage==='detail' 			&& !!status.domainData && <Detail onChange={onDomainChange} data={status.domainData} prices={registerPrices} isSubdomain={isSubdomain(domain)} />}
 					{status.currentPage==='dns-detail' 		&& <DNSDetail />}
-					{status.currentPage==='subdomain' 		&& <Subdomain domain={param || ''} />}
+					{status.currentPage==='subdomain' 		&& <Subdomain data={status.domainData || {name: '', parent: '', owner: '', registrant: '', expire: 0, resolver: '', contentHash: '', texts: {}}} />}
 					{status.currentPage==='register' 		&& <Register domain={param || ''} prices={registerPrices} ownerAddress={status.domainData ? status.domainData.owner : ''} />}
 					{status.currentPage==='connect-register'&& <ConnectRegister domain={domain}/>}
 					{status.currentPage==='register-step' 	&& <RegisterStep domain={domain} stepTime={status.stepTime} />}

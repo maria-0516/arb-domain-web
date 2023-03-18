@@ -29,9 +29,11 @@ const Paginator = ({page, total, getLink}: PaginatorProps) => {
 
 	return (
 		<div className='paginator'>
-			<ul>
-				{pages.map(k=>(<li key={k}><Link className={k===page ? 'selected' : ''} to={getLink(k)}>{k}</Link></li>))}
-			</ul>
+			{total > 1 && (
+				<ul>
+					{pages.map(k=>(<li key={k}><Link className={k===page ? 'selected' : ''} to={getLink(k)}>{k}</Link></li>))}
+				</ul>
+			)}
 		</div>
 		
 	)

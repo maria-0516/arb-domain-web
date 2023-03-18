@@ -14,7 +14,7 @@ import Icon from "../../../components/Icon";
 import namehash from "../../../lib/namehash";
 
 interface SubdomainProps {
-	domain: string
+	data: DomainDataType
 }
 
 interface SubdomainStatus {
@@ -23,9 +23,10 @@ interface SubdomainStatus {
 	subdomains: string[]
 }
 
-const Subdomain = ({domain}: SubdomainProps) => {
+const Subdomain = ({data}: SubdomainProps) => {
 	// const navigator = useNavigate();
 	const {loading, favorites, update, connectedWallet} = useStore()
+	const domain = data.name
 	const wallet = useWallet();
 	const [status, setStatus] = React.useState<SubdomainStatus>({
 		showInput: false,
@@ -36,7 +37,7 @@ const Subdomain = ({domain}: SubdomainProps) => {
 	const refInput = React.useRef<HTMLInputElement>(null)
 
 	const onAddSubdomain = async () => {
-		
+		update({loading: true});
 		try {
 			const label = status.label.trim();
 			if (label==='') {
@@ -49,8 +50,7 @@ const Subdomain = ({domain}: SubdomainProps) => {
 				return
 			}
 			
-			if (domain && wallet.library) {
-				update({loading: true});
+			if (data.name && wallet.library) {
 				const parentNode = namehash.hash(domain);
 				const signer = wallet.library.getSigner();
 				const nameWrapper = new ethers.Contract(Contracts.nameWrapper, abis.nameWrapper, signer)
@@ -65,8 +65,7 @@ const Subdomain = ({domain}: SubdomainProps) => {
 				tips(error.reason);
 			}
 			console.log(error)
-			//tips("Only domain owner can add subdomains.")
-			
+			// tips("Only domain owner can add subdomains.")
 		}
 		update({loading: false})
 	}
@@ -98,9 +97,9 @@ const Subdomain = ({domain}: SubdomainProps) => {
 	}, [])
 
 	const onDelete = async (label: string) => {
+		update({loading: true});
 		try {
 			if (wallet.library) {
-				update({loading: true});
 				const signer = wallet.library.getSigner()
 				const parenthash = namehash.hash(domain)
 				const nameWrapper = new ethers.Contract(Contracts.nameWrapper, abis.nameWrapper, signer);
@@ -143,11 +142,11 @@ const Subdomain = ({domain}: SubdomainProps) => {
 								<p className="name-text">{domain}</p>
 								<i className="heart" onClick={onFavorite}><Icon size={24} icon={domain && favorites[domain.slice(0, domain.lastIndexOf('.'))] ? 'HeartFill' : 'Heart'} /></i>
 							</div>
-							{connectedWallet.connected && <button className="add" onClick={()=>setStatus({...status, showInput: true})}> + ADD SUBDOMAIN</button>}
+							{connectedWallet.connected && connectedWallet.address===data.owner && <button className="add" onClick={()=>setStatus({...status, showInput: true})}> + ADD SUBDOMAIN</button>}
 							<div className="disc-text">{loading ? `Getting subdomains from [${domain}]` : 'No subdomains have been added'}</div>
 						</div>  
 						<div className="sub-footer d-column center middle">
-							<ConnectButton />
+							{/* <ConnectButton /> */}
 						</div>
 					</div>
 				) : (
@@ -157,7 +156,7 @@ const Subdomain = ({domain}: SubdomainProps) => {
 							<i className="heart" onClick={onFavorite}>
 								<Icon size={24} icon={domain && favorites[domain.slice(0, domain.lastIndexOf('.'))] ? 'HeartFill' : 'Heart'} />
 							</i>
-							{connectedWallet.connected && <button className="add" onClick={()=>setStatus({...status, showInput: true})}> + ADD SUBDOMAIN</button>}
+							{connectedWallet.connected && connectedWallet.address===data.owner && <button className="add" onClick={()=>setStatus({...status, showInput: true})}> + ADD SUBDOMAIN</button>}
 						</div>
 						<div className="subdomain-region">
 							{status.subdomains.map((i, k) => (
