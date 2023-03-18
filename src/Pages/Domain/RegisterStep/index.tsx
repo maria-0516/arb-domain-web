@@ -36,9 +36,9 @@ const RegisterStep = ({domain, stepTime}: RegisterStepProps) => {
 					update({loading: false, reg: {...reg, commitment: '', params: []}})
 				} else if ((now() - reg.timestamp) > _min) {
 					const signer = wallet.library.getSigner();
-					const value = ethers.utils.parseEther(String(reg.price * 1.1));
+					// const value = ethers.utils.parseEther(String(reg.price * 1.1));
 					const ethRegistrarController = new ethers.Contract(Contracts.ethRegistrarController, abis.controller, signer);
-					const tx = await ethRegistrarController.register(...reg.params, {value});
+					const tx = await ethRegistrarController.register(...reg.params);
 					await tx.wait();
 					update({loading: false, reg: {...reg, commitment: '', params: [], timestamp: 0}})
 					navigator(`/name/${domain}`)

@@ -1,24 +1,17 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
-// import { Line } from 'react-chartjs-2';
-// import faker from 'faker';
-// import { useParams } from "react-router-dom";
 import InputField from "../../../components/InputField";
 import { Contracts, abis, getCommitment, getGasPrice } from '../../../lib/ENSLib';
-
 import './register.scss';
-// import Loading from "../../../components/Loading";
 import Icon from "../../../components/Icon";
-// import bell from '../../../assets/neon/img/bell.svg';
 import polygon from '../../../assets/neon/img/polygon.svg';
-import logo from '../../../assets/neon/img/logo.svg';
-import Spinner from "../../../components/Spinner";
 import WebCrypto from "../../../lib/WebCrypto";
 import useWallet from "../../../useWallet";
-import useStore, { config, getExpectedDomainPrice, N, NF, now, tips } from "../../../useStore";
+import useStore, { config, encodeCall, fetchJson, getExpectedDomainPrice, N, NF, now, tips } from "../../../useStore";
 import { ethers } from "ethers";
 import { isSubdomain } from "../../../lib/utils";
 import CoinSelect from "../../../components/CoinSelect";
+import ERC20Abi from '../../../config/abis/ERC20.json'
 
 interface RegisterStatus {
 	inited: boolean
@@ -92,7 +85,23 @@ const Register = ({domain, prices, ownerAddress}: {domain: string, prices: Price
 		try {
 			if (wallet.library) {
 				// const provider = new ethers.providers.Web3Provider(wallet.library.provider);
+				
 				const signer = wallet.library.getSigner();
+				console.log(signer.getAddress());
+				
+				const acceptToken = new ethers.Contract(Contracts.acceptToken, ERC20Abi, signer);
+				const approve = await acceptToken.approve(Contracts.ethRegistrarController, ethers.utils.parseEther(String(status.price * 1.1)));
+				await approve.wait();
+				// const params = [
+				// 	encodeCall(new ethers.utils.Interface(["function approve(address spender, uint amount) public returns (bool)"]), Contracts.acceptToken, "approve", [Contracts.ethRegistrarController, status.price], 1)
+				// ]
+				// console.log("approve")
+				// const json = await fetchJson(config.rpc, params)
+				// if (json!==null && Array.isArray(json) && json.length===params.length) {
+				// 	console.log("json", json)
+				// } else {
+				// 	console.log("json null")
+				// }
 				const secret = await WebCrypto.hash(connectedWallet.address + Date.now())
 				const label  = domain.slice(0, -5);
 				const params = [label, connectedWallet.address || '', reg.year * 86400 * 366, '0x' + secret, Contracts.publicResolver, [] as string[], false, 0, MAX_EXPIRY]
@@ -109,8 +118,8 @@ const Register = ({domain, prices, ownerAddress}: {domain: string, prices: Price
 				tips(error.reason)
 			}
 			console.log(error)
-			update({loading: false})
 		}
+		update({loading: false})
 	}
 	
 	React.useEffect(() => {
