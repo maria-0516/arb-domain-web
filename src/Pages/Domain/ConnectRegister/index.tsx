@@ -26,7 +26,7 @@ const ConnectRegister = ({domain}: {domain?: string}) => {
 				{!!domain && <p className="domain-text">{loading ? `Getting [${domain}] information...` : `Domain available`}</p>}
 				<div className="d-column middle center" style={{gap: 10}}>
 					<p className="small-text">*No wallet connected. Please connect a wallet to continue.</p>
-					<ConnectButton />
+					{/* <ConnectButton /> */}
 				</div>
 			</div>
 		</div>

@@ -107,7 +107,7 @@ const ConnectDialog = ({show, onClose}: DlgProps) => {
 					<li className="title">Connect your wallet</li>
 					<li onClick={()=>onConnect('Injected')}>
 						<div className="img-region">
-							<img src={walletIcons.metamask} alt="metamask" style={{width: '64px', height: '64px'}} />
+							<img src={walletIcons.metamask} alt="metamask" style={{width: '53px', height: '53px'}} />
 						</div>
 						<div className="text-region">
 							<p className="big">MataMask Wallet</p>
