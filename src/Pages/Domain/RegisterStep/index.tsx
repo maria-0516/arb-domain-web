@@ -146,7 +146,7 @@ const RegisterStep = ({domain, stepTime}: RegisterStepProps) => {
 						<img src={bag} alt="bag" />
 					</div> */}
 					<p className='purple-text'>MANAGE NAME</p>
-					<button onClick={onSubmit} className='purple-btn'>SET AS PRIMARY ENS NAME</button>
+					<button onClick={onSubmit} className='purple-btn'>SET AS PRIMARY ANS NAME</button>
 				</div>
 			</div>
 		</div>
