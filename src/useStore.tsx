@@ -120,7 +120,8 @@ export const N = (n: ethers.BigNumber|string, p = 18) => {
 	return Number(ethers.utils.formatUnits(n, p))
 }
 // export const N = (n: ethers.BigNumber|number, p: number = 18) => (Number(ethers.utils.formatUnits(typeof n==='number' ? ethers.BigNumber.from(Math.round(n)) : n, p)))
-export const NF = (n: number, p: number = 4) => (n.toFixed(p).replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","))
+// export const NF = (n: number, p: number = 4) => (n.toFixed(p).replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","))
+export const NF = (n:string|number)=>Number(n).toLocaleString('en')
 
 export const toDate = (timestamp: number) => {
 	const d = new Date(timestamp * 1e3)
@@ -150,7 +151,7 @@ export const validateUsername = (username: string) => /^[a-zA-Z0-9]{6,20}$/.test
 export const validateUrl = (url: string) => /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/.test(url);
 
 export const prettyFormat = (n:number, p: number=8)=>{
-	const x = String(n.toFixed(p)).replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",").split('.')
+	const x = NF(n.toFixed(p)).split('.')
 	return (
 		<>
 			<span>{x[0]}.</span>

@@ -74,65 +74,65 @@ export const getDomainByAddress = async (address: string, isRegistrant: boolean,
 	return null;
 }
 
-export const getDomainByName = async (name: string) => {
-	try {
-		// await new Promise(resolve=>setTimeout(resolve, 5000));
-		const p = name.lastIndexOf('.');
-		const parent = name.slice(p);
-		const _name = name.slice(0, p);
-		// const _root = name.slice(p);
-		// if (_root===root) return null;
-		const { _owner, _initialOwner, _expire, _resolver, _contentHash, _texts, _prices} = await deamNameWrapper.byName(_name);
+// export const getDomainByName = async (name: string) => {
+// 	try {
+// 		// await new Promise(resolve=>setTimeout(resolve, 5000));
+// 		const p = name.lastIndexOf('.');
+// 		const parent = name.slice(p);
+// 		const _name = name.slice(0, p);
+// 		// const _root = name.slice(p);
+// 		// if (_root===root) return null;
+// 		const { _owner, _initialOwner, _expire, _resolver, _contentHash, _texts, _prices} = await deamNameWrapper.byName(_name);
 		
-		const basePrice = N(_prices.basePrice)
-		const premiumPrice = N(_prices.premiumPrice)
-		const etherPrice = N(_prices.etherPrice, 8)
-		if (_initialOwner!==zeroAddress) {
-			let k = 0;
-			return {
-				data: {
-					name,
-					parent, 
-					owner: _owner,
-					registrant: _initialOwner,
-					expire: _expire.toNumber(),
-					resolver: _resolver,
-					contentHash: hexToString(_contentHash),
-					snapshot: _texts[k++],
-					url: _texts[k++],
-					avatar: _texts[k++],
-					comTwitter: _texts[k++],
-					comGithub: _texts[k++],
-					email: _texts[k++],
-					description: _texts[k++],
-					notice: _texts[k++],
-					keywords: _texts[k++],
-					comDiscord: _texts[k++],
-					comReddit: _texts[k++],
-					orgTelegram: _texts[k++],
-					neonDelegate: _texts[k++]
-				},
-				prices: {
-					basePrice, 
-					premiumPrice, 
-					etherPrice
-				}
-			}
-		} else {
+// 		const basePrice = N(_prices.basePrice)
+// 		const premiumPrice = N(_prices.premiumPrice)
+// 		const etherPrice = N(_prices.etherPrice, 8)
+// 		if (_initialOwner!==zeroAddress) {
+// 			let k = 0;
+// 			return {
+// 				data: {
+// 					name,
+// 					parent, 
+// 					owner: _owner,
+// 					registrant: _initialOwner,
+// 					expire: _expire.toNumber(),
+// 					resolver: _resolver,
+// 					contentHash: hexToString(_contentHash),
+// 					snapshot: _texts[k++],
+// 					url: _texts[k++],
+// 					avatar: _texts[k++],
+// 					comTwitter: _texts[k++],
+// 					comGithub: _texts[k++],
+// 					email: _texts[k++],
+// 					description: _texts[k++],
+// 					notice: _texts[k++],
+// 					keywords: _texts[k++],
+// 					comDiscord: _texts[k++],
+// 					comReddit: _texts[k++],
+// 					orgTelegram: _texts[k++],
+// 					neonDelegate: _texts[k++]
+// 				},
+// 				prices: {
+// 					basePrice, 
+// 					premiumPrice, 
+// 					etherPrice
+// 				}
+// 			}
+// 		} else {
 			
-			return {
-				prices: {
-					basePrice, 
-					premiumPrice, 
-					etherPrice
-				}
-			}
-		}
-	} catch (error) {
-		console.log(error)
-	}
-	return null
-}
+// 			return {
+// 				prices: {
+// 					basePrice, 
+// 					premiumPrice, 
+// 					etherPrice
+// 				}
+// 			}
+// 		}
+// 	} catch (error) {
+// 		console.log(error)
+// 	}
+// 	return null
+// }
 
 export const getPrice = async (domain: string, duration: number) => {
 	// await new Promise(resolve => setTimeout(resolve, 500));
